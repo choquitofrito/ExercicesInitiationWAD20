@@ -10,6 +10,9 @@
 <body>
     <?php
 
+
+
+
     // une fonction qui crée un nouvel array et le renvoie (pas d'affichage)
     function fois2($arr)
     {
@@ -21,7 +24,7 @@
     }
     $unArray = [4, 4, 3, 3];
     $arrayFois2 = fois2($unArray);
-    var_dump ($arrayFois2);
+    var_dump($arrayFois2);
 
 
     $unArray = [4, 5, 7];
