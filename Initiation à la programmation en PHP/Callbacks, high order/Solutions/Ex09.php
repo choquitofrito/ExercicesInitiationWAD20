@@ -20,6 +20,8 @@
             $fonctionARealiser($val);
             echo "<br>"; // bfffffffffffffff nonono....
         }
+        
+
     }
 
     $fois10 = function ($val) {
