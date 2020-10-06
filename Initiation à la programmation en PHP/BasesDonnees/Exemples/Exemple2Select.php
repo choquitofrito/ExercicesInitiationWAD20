@@ -14,9 +14,17 @@
 
     // $db = new PDO ("mysql:host=localhost;port=3360;dbname=faketrains;charset=utf8","root","");
 
-    $sql = "SELECT id,code, villeDepart, villeDestination, code FROM trains";
+    $sql = "SELECT id,code, villeDepart, villeDestination, code FROM trains "
+            ."WHERE villeDepart = :villeDepartParam";
+    
     $objetRequete = $db->prepare ($sql);
+
+
+    $villeDepart = "Bruxelles";
+    $objetRequete->bindParam(":villeDepartParam",$villeDepart);
+
     $objetRequete->execute();
+
     $arrayResultat = $objetRequete->fetchAll(PDO::FETCH_ASSOC);
 
     var_dump ($arrayResultat);
