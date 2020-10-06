@@ -2,10 +2,10 @@
 
 // du texte
 echo "Bonjour!";
-echo "<h5 id='monH5'>Je suis un h5</h5>";
+echo "<h5 id='monH5'>Je suis un h5</h5>\n";
 
 // un div
-echo "<div class='maclasse'>Je suis dans un div</div>";
+echo "<div class='maclasse'>Je suis dans un div</div>\n";
 
 // du contenu dynamique simple
 echo "<br>";
@@ -26,13 +26,19 @@ echo implode (",", $noms);
 $paysOrigine = ['Belgique','Italie','Pologne'];
 
 echo "<br>";
-echo "<select>";
+echo "<select>\n";
 foreach ($paysOrigine as $unPays){
-    echo "<option>". $unPays . "</option>";
+    echo "<option>". $unPays . "</option>\n";
 };
-echo "</select>"; 
+echo "</select>\n"; 
 
-echo "<script>console.log ('hello depuis un js dans php')</script>";
+echo "<img src='./pizza.jpg'>";
+
+echo "<img src=\"./pizza.jpg\">";
+
+
+
+
 
 
 
