@@ -3,7 +3,7 @@ try{
     $db= new PDO (DBDRIVER.': host='.DBHOST.';port='.DBPORT.';dbname='.DBNAME.';charset='.DBCHARSET, DBUSER, DBPASS); 
 } 
 catch (Exception $ex) {
-    die('Erreur ; '.$ex->getMessage());
+    die('Erreur ; '.$ex->getMessage()); // pas en production!!
 }
 
 // $sql="SELECT * FROM concerts";
