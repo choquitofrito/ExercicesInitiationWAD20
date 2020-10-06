@@ -11,4 +11,15 @@
     // créer une connexion à la BD
     $db= new PDO (DBDRIVER.': host='.DBHOST.';port='.DBPORT.';dbname='.DBNAME.
                 ';charset='.DBCHARSET, DBUSER, DBPASS); 
+    
+    
+    var_dump ($_POST);
+
+    $sql = "INSERT INTO ('id','code','villeDepart','villeDestination') ".
+            "VALUES ( )";
+
+    
+    ?>
+</body>
+</html>
 
