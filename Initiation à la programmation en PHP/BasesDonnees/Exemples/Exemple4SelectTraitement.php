@@ -14,13 +14,15 @@
 
     // prise de données d'un formulaire
     $villeDepart = $_POST['villeDepart']; // filter_vars
-    
-    $sql = "SELECT * FROM trains WHERE villeDepart=:villeDepart";
+    $villeDestination = $_POST['villeDestination'];
+
+    $sql = "SELECT * FROM trains WHERE villeDepart=:villeDepart AND villeDestination=:villeDestination";
 
     var_dump ($sql);
 
     $stmt = $db->prepare($sql); // envoyer la requête au serveur
     $stmt->bindParam (":villeDepart",$villeDepart);    
+    $stmt->bindParam (":villeDestination",$villeDestination);    
     
     $stmt->execute(); // lancer la requête
 
