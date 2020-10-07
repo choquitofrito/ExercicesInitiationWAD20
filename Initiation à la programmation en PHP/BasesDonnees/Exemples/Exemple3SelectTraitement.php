@@ -14,8 +14,9 @@
 
     // prise de données d'un formulaire
     $villeDepart = $_POST['villeDepart']; // filter_vars
+    $villeDepart = strtoupper($villeDepart);
     
-    $sql = "SELECT * FROM trains WHERE villeDepart=:villeDepart";
+    $sql = "SELECT * FROM trains WHERE UPPER(villeDepart)=:villeDepart";
 
     var_dump ($sql);
 
