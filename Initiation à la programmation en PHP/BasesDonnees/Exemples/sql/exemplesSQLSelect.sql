@@ -22,8 +22,9 @@ SELECT * FROM trains WHERE villeDepart LIKE 'Bru%'
 SELECT * FROM trains WHERE villeDepart LIKE '%es' 
 -- ex: tous les trains dont la ville contient un certain texte
 SELECT * FROM trains WHERE villeDepart LIKE '%xe%'
-
+-- ex: recherche par fragment de texte
 SELECT * FROM trains WHERE villeDepart LIKE '%rs%' OR villeDestination LIKE '%en%'
+
 
 
 
