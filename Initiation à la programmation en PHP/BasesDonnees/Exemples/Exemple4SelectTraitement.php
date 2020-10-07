@@ -24,6 +24,7 @@
     $stmt->bindParam (":villeDepart",$villeDepart);    
     $stmt->bindParam (":villeDestination",$villeDestination);    
     
+    
     $stmt->execute(); // lancer la requête
 
     $arrayResultat = $stmt->fetchAll(PDO::FETCH_ASSOC); // créer un array qui contient des arrays assoc
