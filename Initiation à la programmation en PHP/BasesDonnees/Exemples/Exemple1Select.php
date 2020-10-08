@@ -21,6 +21,7 @@
 
     var_dump ($arrayResultat);
 
+    
 
     var_dump ($db);
 
