@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Affichage de tous les livres</title>
 </head>
 <body>
 <?php
@@ -18,6 +18,9 @@
         echo "Il a eu une erreur";
         echo $e->getMessage(); // seulement en dev!!!!
     }
+    echo $titre;
+
+    echo "<input type='text' name='nom'>$titre"
     
 ?>    
 </body>

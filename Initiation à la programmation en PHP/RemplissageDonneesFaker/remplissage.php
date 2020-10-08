@@ -39,11 +39,10 @@
 
     // 2. Remplissage du tableau Client
     // adresse, nom, prenom, email
-
     $sql = "INSERT INTO Client (adresse,nom,prenom,email) VALUES (:adresse,:nom,:prenom,:email)";
 
     $stmt = null;
-
+    
     for ($i = 0; $i < 100; $i++) {
 
         $stmt = $db->prepare($sql);
@@ -69,8 +68,6 @@
         // echo "<br>".$nom;
         // echo "<br>".$prenom;
         // echo "<br>".$email;
-
-
 
     }
 
@@ -142,7 +139,7 @@
         $prix = mt_rand(10, 35);
         $description = "Bla bla bla " . $titre;
         $date_publication = $faker->date('Y-m-d');
-        $isbn = mt_rand(1000000000000000, 10000000000000000 - 1);
+        $isbn = mt_rand(1000000000000000,  10000000000000000 - 1);
 
         $indexAuteur = mt_rand(1, count($arrayIdAuteurs) - 1); // on prend un id d'un Auteur au hasard de l'array obtenu. Assurez-vous que vos
         // Auteurs commencent par l'id 1. Autrement il faut elaborer plus les requêtes.
@@ -180,7 +177,7 @@
     $stmtLivres = $db->prepare($sqlLivres);
     $stmtLivres->execute();
     $arrayIdLivres = $stmtLivres->fetchAll(PDO::FETCH_ASSOC); // voici un array d'id d'Livres!
-
+    
     for ($i = 0; $i < 300; $i++) {
 
         $stmt = $db->prepare($sql);
