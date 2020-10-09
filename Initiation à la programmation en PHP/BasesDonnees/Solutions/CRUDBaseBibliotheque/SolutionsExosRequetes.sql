@@ -51,28 +51,70 @@ SELECT * FROM Livre WHERE MONTH(date_publication) = 2 AND YEAR(date_publication)
 
 -- 16. Obtenez les emprunts depuis le 1er janvier 2015 (le plus
 --     récent le premier)
-SELECT * FROM Emprunt WHERE date_emprunt > "2015-1-1";
+SELECT * FROM Emprunt WHERE date_emprunt > "2015-1-1" ORDER BY date_emprunt ;
 
 -- Jointures
-
 -- 17. Obtenez une liste où on affiche de couples titre du livre -- nom de l'auteur
+SELECT Livre.titre, Auteur.nom, Auteur.prenom FROM auteur
+INNER JOIN Livre 
+ON auteur.id = livre.auteur_id;
 
 -- 18. Obtenez une liste de tous les exemplaires de chaque livre
+SELECT Livre.titre, Exemplaire.id as idExemplaire, Exemplaire.etat FROM Livre
+INNER JOIN Exemplaire
+ON Exemplaire.livre_id = Livre.id
 
 -- 19. Obtenez les titres des livres empruntés par chaque client
+SELECT Client.nom, Livre.titre FROM Client
+INNER JOIN emprunt 
+ON emprunt.client_id = client.id
+INNER JOIN exemplaire
+ON exemplaire.id = emprunt.exemplaire_id
+INNER JOIN livre
+ON livre.id = exemplaire.livre_id
+ORDER BY client.nom, client.prenom, livre.titre
+
+-- on peut éviter les doublons avec DISTINCT 
+SELECT DISTINCT Client.nom, Livre.titre FROM Client
+INNER JOIN emprunt 
+ON emprunt.client_id = client.id
+INNER JOIN exemplaire
+ON exemplaire.id = emprunt.exemplaire_id
+INNER JOIN livre
+ON livre.id = exemplaire.livre_id
+ORDER BY client.nom, client.prenom, livre.titre
 
 -- 20. Obtenez les titres des livres empruntés entre 2008 et 2010
 
+SELECT livre.titre, emprunt.date_emprunt, emprunt.date_retour FROM livre
+INNER JOIN exemplaire
+ON livre.id = exemplaire.livre_id
+INNER JOIN emprunt
+ON exemplaire.id = emprunt.exemplaire_id
+WHERE YEAR (emprunt.date_emprunt) >= 2008 
+AND YEAR(emprunt.date_emprunt) <= 2010
+ORDER BY YEAR(emprunt.date_emprunt)
+-- notez qu'on peut trier aussi en utilisant une fonction
+
+
 -- 21. Obtenez les noms des clients qui on emprunté les livres d'Astérix
+SELECT DISTINCT Client.nom FROM Client
+INNER JOIN emprunt 
+ON emprunt.client_id = client.id
+INNER JOIN exemplaire
+ON exemplaire.id = emprunt.exemplaire_id
+INNER JOIN livre
+ON livre.id = exemplaire.livre_id
+WHERE livre.titre LIKE '%Asterix%'
+ORDER BY client.nom, client.prenom, livre.titre
+
 
 -- 22. Considérez qu'un emprunt peut durer deux semaines au maximum. Obtenez une liste des exemplaires empruntés et des dates limite des emprunts (utilisez ADDDATE)
-
-
-
-
-
-SELECT titre, nom, prenom FROM livre, auteur
-WHERE auteur.id = livre.auteur_id;
+SELECT livre.titre, emprunt.date_emprunt, DATE_ADD(emprunt.date_emprunt, INTERVAL 14 DAY) as date_limite FROM livre
+INNER JOIN exemplaire
+ON livre.id = exemplaire.livre_id
+INNER JOIN emprunt
+ON exemplaire.id = emprunt.exemplaire_id
 
 
 -- Requêtes avec plusieurs tableaux (jointures -- JOIN)
