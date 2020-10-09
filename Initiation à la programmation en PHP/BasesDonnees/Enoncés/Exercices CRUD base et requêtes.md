@@ -83,7 +83,7 @@ format doit être respecté) :
 [SELECT](http://localhost/phpmyadmin/url.php?url=https://dev.mysql.com/doc/refman/5.5/en/select.html)
 \* FROM \`emprunt\` WHERE date\_emprunt \> \"2008/01/01\"
 
-15. Obtenez les livres empruntés pendant le mois de Février de 2015
+15. Obtenez les emprunts (pas d'autres infos) du mois de Février de 2015
     (MONTH : <https://www.w3schools.com/sql/func_mysql_month.asp>)
 
 16. Obtenez les livres empruntés après le 1^er^ janvier 2015 (le plus
