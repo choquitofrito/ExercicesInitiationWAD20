@@ -86,7 +86,7 @@ format doit être respecté) :
 15. Obtenez les emprunts (pas d'autres infos) du mois de Février de 2015
     (MONTH : <https://www.w3schools.com/sql/func_mysql_month.asp>)
 
-16. Obtenez les livres empruntés après le 1^er^ janvier 2015 (le plus
+16. Obtenez les emprunts depuis le 1^er^ janvier 2015 (le plus
     récent le premier)
 
 Requêtes avec plusieurs tableaux (jointures -- JOIN)

@@ -49,8 +49,39 @@ SELECT * FROM Livre WHERE date_publication > "2008-01-01";
 SELECT * FROM Livre WHERE MONTH(date_publication) = 2 AND YEAR(date_publication) = 2015;
 
 
--- 16. Obtenez les livres empruntés après le 1^er^ janvier 2015 (le plus
+-- 16. Obtenez les emprunts depuis le 1er janvier 2015 (le plus
 --     récent le premier)
+SELECT * FROM Emprunts WHERE date_emprunt > "2015-1-1";
+
+-- Jointures
+
+-- 17. Obtenez une liste où on affiche de couples titre du livre -- nom de l'auteur
+
+-- 18. Obtenez une liste de tous les exemplaires de chaque livre
+
+-- 19. Obtenez les titres des livres empruntés par chaque client
+
+-- 20. Obtenez les titres des livres empruntés entre 2008 et 2010
+
+-- 21. Obtenez les noms des clients qui on emprunté les livres d'Astérix
+
+-- 22. Considérez qu'un emprunt peut durer deux semaines au maximum. Obtenez une liste des exemplaires empruntés et des dates limite des emprunts (utilisez ADDDATE)
+
+
+
+
+SELECT titre, nom, prenom FROM livre, auteur 
+WHERE auteur.id = livre.auteur_id
+AND livre.prix > 30;
+
+SELECT titre, nom, prenom FROM auteur
+INNER JOIN livre 
+ON auteur.id = livre.auteur_id
+WHERE livre.prix >30;
+
+SELECT titre, nom, prenom FROM livre, auteur
+WHERE auteur.id = livre.auteur_id;
+
 
 -- Requêtes avec plusieurs tableaux (jointures -- JOIN)
 -- ----------------------------------------------------

@@ -25,6 +25,17 @@ SELECT * FROM trains WHERE villeDepart LIKE '%xe%'
 -- ex: recherche par fragment de texte
 SELECT * FROM trains WHERE villeDepart LIKE '%rs%' OR villeDestination LIKE '%en%'
 
+-- exemples jointures 
+
+-- vieille notation
+SELECT titre, nom, prenom FROM livre, auteur 
+WHERE auteur.id = livre.auteur_id
+AND livre.prix > 30;
+-- "nouvelle" notation 
+SELECT titre, nom, prenom FROM auteur
+INNER JOIN livre 
+ON auteur.id = livre.auteur_id
+WHERE livre.prix >30;
 
 
 
