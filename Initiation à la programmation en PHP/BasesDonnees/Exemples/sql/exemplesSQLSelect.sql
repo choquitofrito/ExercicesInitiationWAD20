@@ -41,7 +41,7 @@ WHERE livre.prix >30;
 -- jointure à trois tableaux!
 
 -- Connaitre les dates d'emprunt et de retour des exemplaires de tous les livres
-SELECT livre.titre, exemplaire.etat, emprunt.date_retour, emprunt.date_emprunt
+SELECT livre.titre, exemplaire.id, exemplaire.etat, emprunt.date_retour, emprunt.date_emprunt
 FROM livre 
 INNER JOIN exemplaire
 ON livre.id = exemplaire.livre_id
@@ -50,7 +50,15 @@ ON exemplaire.id = emprunt.exemplaire_id
 order by livre.titre, emprunt.date_emprunt, emprunt.date_retour, exemplaire.etat
 
 
-
+-- Connaitre les dates d'emprunt et de retour de tous les exemplaires 
+-- de tous les livres
+SELECT livre.titre, exemplaire.id AS idExemplaire, emprunt.date_emprunt, emprunt.date_retour FROM livre 
+INNER JOIN exemplaire
+ON livre.id = exemplaire.livre_id
+INNER JOIN emprunt
+ON exemplaire.id = emprunt.exemplaire_id
+WHERE titre LIKE "%Asterix%"
+ORDER BY livre.titre, exemplaire.id, emprunt.date_emprunt, emprunt.date_retour
 
 
 
