@@ -115,3 +115,61 @@ INNER JOIN exemplaire
 ON livre.id = exemplaire.livre_id
 INNER JOIN emprunt
 ON exemplaire.id = emprunt.exemplaire_id;
+
+
+-- 23. Obtenez le nombre de clients avec COUNT()
+-- function COUNT compte le nombre de lignes. 
+-- ATTENTION! pas d'espace entre COUNT et la parenthèse! étrange de la part des DEVs :/
+SELECT COUNT(*) FROM client;
+
+-- on peut choisir aussi un champ et COUNT comptera le nombre de lignes où le champ n'est pas null 
+-- Dans notre BD il n'y a pas de nulls, le "" n'est pas null
+SELECT COUNT(client.nom) FROM client;
+
+-- 24. Obtenez le nombre de livres qui se trouvent à la bibliothèque
+SELECT COUNT(*) FROM livre;
+
+-- 25. Obtenez le nombre de clients dont le nom contient la lettre 'b'
+SELECT COUNT(*) FROM client WHERE nom LIKE '%b%';
+
+-- 26. Obtenez le nombre d'exemplaires disponibles
+-- le tout...
+SELECT COUNT(*) FROM exemplaire
+INNER JOIN emprunt 
+ON exemplaire.id = emprunt.exemplaire_id;
+-- ou le nombre de disponibles à la date d'aujourd'hui
+-- Pour tester, mettez une date de retour dans le futur car les 
+-- randoms de Faker vont jusqu'à la date de la génération des données
+SELECT COUNT(*) FROM exemplaire 
+INNER JOIN emprunt 
+ON exemplaire.id = emprunt.exemplaire_id
+WHERE date_retour < CURRENT_DATE;
+
+-- 27. Obtenez le nombre d'exemplaires disponibles d'un titre de votre choix
+SELECT Livre.titre, Exemplaire.id as idExemplaire, Exemplaire.etat FROM Livre
+INNER JOIN Exemplaire
+ON Exemplaire.livre_id = Livre.id
+WHERE Livre.titre = 'Les aventures de Matilde'; -- attention : il faut avoir au moins un exemplaire du livre choisi! 
+
+
+-- 28. Obtenez tous les livres dont le titre commence par 'V'
+SELECT * FROM livre WHERE titre LIKE 'V%';
+-- ou avec LEFT
+SELECT * FROM livre WHERE LEFT(titre,1) = 'V' 
+
+-- GROUP BY!
+
+
+-- 29. Obtenez le nombre d'exemplaires de chaque livre (afficher le code du
+-- livre, pas besoin du titre)
+
+
+
+-- 30. Obtenez le nombre d'exemplaires de chaque livre (afficher le titre
+--     du livre aussi)
+
+-- 31. Obtenez la liste d'exemplaires qui ont été empruntés cette année
+
+-- 32. Obtenez le nombre d'emprunts par année
+
+-- 33. Obtenez le nombre de emprunts réalisés par chaque client
