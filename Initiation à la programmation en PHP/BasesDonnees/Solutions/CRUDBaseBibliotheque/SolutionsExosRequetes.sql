@@ -51,7 +51,7 @@ SELECT * FROM Livre WHERE MONTH(date_publication) = 2 AND YEAR(date_publication)
 
 -- 16. Obtenez les emprunts depuis le 1er janvier 2015 (le plus
 --     récent le premier)
-SELECT * FROM Emprunts WHERE date_emprunt > "2015-1-1";
+SELECT * FROM Emprunt WHERE date_emprunt > "2015-1-1";
 
 -- Jointures
 
@@ -70,14 +70,6 @@ SELECT * FROM Emprunts WHERE date_emprunt > "2015-1-1";
 
 
 
-SELECT titre, nom, prenom FROM livre, auteur 
-WHERE auteur.id = livre.auteur_id
-AND livre.prix > 30;
-
-SELECT titre, nom, prenom FROM auteur
-INNER JOIN livre 
-ON auteur.id = livre.auteur_id
-WHERE livre.prix >30;
 
 SELECT titre, nom, prenom FROM livre, auteur
 WHERE auteur.id = livre.auteur_id;
