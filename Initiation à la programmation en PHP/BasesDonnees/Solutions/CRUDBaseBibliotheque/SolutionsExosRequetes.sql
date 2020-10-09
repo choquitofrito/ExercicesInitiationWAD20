@@ -155,21 +155,44 @@ WHERE Livre.titre = 'Les aventures de Matilde'; -- attention : il faut avoir au 
 -- 28. Obtenez tous les livres dont le titre commence par 'V'
 SELECT * FROM livre WHERE titre LIKE 'V%';
 -- ou avec LEFT
-SELECT * FROM livre WHERE LEFT(titre,1) = 'V' 
+SELECT * FROM livre WHERE LEFT(titre,1) = 'V';
 
 -- GROUP BY!
 
 
 -- 29. Obtenez le nombre d'exemplaires de chaque livre (afficher le code du
 -- livre, pas besoin du titre)
-
-
+select livre.id,count(*) FROM exemplaire
+inner join livre 
+on exemplaire.livre_id = livre.id
+group by livre.id;
 
 -- 30. Obtenez le nombre d'exemplaires de chaque livre (afficher le titre
 --     du livre aussi)
+select livre.id,livre.titre,count(*) FROM exemplaire
+inner join livre 
+on exemplaire.livre_id = livre.id
+group by livre.id, livre.titre; 
+-- observer que, quand on utilise GROUP BY, 
+-- si la colonne est dans les select elle doit être aussi dans le group by
+
 
 -- 31. Obtenez la liste d'exemplaires qui ont été empruntés cette année
+SELECT exemplaire.* FROM exemplaire
+INNER JOIN emprunt 
+ON exemplaire.id = emprunt.exemplaire_id
+WHERE YEAR (date_emprunt) = YEAR (CURRENT_DATE);
 
 -- 32. Obtenez le nombre d'emprunts par année
+SELECT YEAR(emprunt.date_emprunt),COUNT(*) FROM emprunt
+GROUP BY YEAR(emprunt.date_emprunt)
+ORDER BY YEAR(emprunt.date_emprunt),COUNT(*); -- si c'est dans le select, c'est dans le GROUP BY
 
 -- 33. Obtenez le nombre de emprunts réalisés par chaque client
+SELECT client.id, client.nom, client.prenom, COUNT(*) FROM emprunt
+INNER JOIN client
+ON client.id = emprunt.client_id
+GROUP BY client.id, client.nom, client.prenom
+
+
+
