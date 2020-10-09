@@ -44,56 +44,58 @@ SELECT * FROM Livre WHERE titre LIKE '%Asterix%' WHERE prix < 20;
 -- 14. Obtenez tous les livres publiés à partir de 2008 (y inclus 2008)
 SELECT * FROM Livre WHERE date_publication > "2008-01-01";
 
--- 15. Obtenez les livres empruntés pendant le mois de Février de 2015
+-- 15. Obtenez les emprunts pendant le mois de Février de 2015
 --     (MONTH : <https://www.w3schools.com/sql/func_mysql_month.asp>)
-
-16. Obtenez les livres empruntés après le 1^er^ janvier 2015 (le plus
-    récent le premier)
-
-Requêtes avec plusieurs tableaux (jointures -- JOIN)
-----------------------------------------------------
-
-Les jointures :
-
-17. Obtenez une liste où on affiche de couples titre du livre -- nom de
-    l\'auteur
-
-18. Obtenez une liste de tous les exemplaires de chaque livre
-
-19. Obtenez les titres des livres empruntés par chaque client
-
-20. Obtenez les titres des livres empruntés entre 2008 et 2010
-
-21. Obtenez les noms des clients qui on emprunté les livres d\'Astérix
-
-22. Considérez qu'un emprunt peut durer deux semaines au maximum.
-    Obtenez une liste des exemplaires empruntés et des dates limite des
-    emprunts (utilisez ADDDATE)
-
-Requêtes diverses
------------------
-
-23. Obtenez le nombre de clients avec COUNT()
-    <https://www.w3schools.com/sql/func_mysql_count.asp>
-
-24. Obtenez le nombre de livres qui se trouvent à la bibliothèque
-
-25. Obtenez le nombre de clients dont le nom contient la lettre 'b'
-
-26. Obtenez le nombre d'exemplaires disponibles
-
-27. Obtenez le nombre d'exemplaires disponibles d'un titre de votre
-    choix
+SELECT * FROM Livre WHERE MONTH(date_publication) = 2 AND YEAR(date_publication) = 2015;
 
 
+-- 16. Obtenez les livres empruntés après le 1^er^ janvier 2015 (le plus
+--     récent le premier)
+
+-- Requêtes avec plusieurs tableaux (jointures -- JOIN)
+-- ----------------------------------------------------
+
+-- Les jointures :
+
+-- 17. Obtenez une liste où on affiche de couples titre du livre -- nom de
+--     l\'auteur
+
+-- 18. Obtenez une liste de tous les exemplaires de chaque livre
+
+-- 19. Obtenez les titres des livres empruntés par chaque client
+
+-- 20. Obtenez les titres des livres empruntés entre 2008 et 2010
+
+-- 21. Obtenez les noms des clients qui on emprunté les livres d\'Astérix
+
+-- 22. Considérez qu'un emprunt peut durer deux semaines au maximum.
+--     Obtenez une liste des exemplaires empruntés et des dates limite des
+--     emprunts (utilisez ADDDATE)
+
+-- Requêtes diverses
+-- -----------------
+
+-- 23. Obtenez le nombre de clients avec COUNT()
+--     <https://www.w3schools.com/sql/func_mysql_count.asp>
+
+-- 24. Obtenez le nombre de livres qui se trouvent à la bibliothèque
+
+-- 25. Obtenez le nombre de clients dont le nom contient la lettre 'b'
+
+-- 26. Obtenez le nombre d'exemplaires disponibles
+
+-- 27. Obtenez le nombre d'exemplaires disponibles d'un titre de votre
+--     choix
 
 
--- après
-SELECT auteur.nom, livre.titre FROM livre INNER JOIN auteur 
-ON livre.auteur_id = auteur.id;
 
--- ou la requête équivalente...
 
-SELECT auteur.nom, livre.titre FROM auteur INNER JOIN livre 
-ON livre.auteur_id = auteur.id;
+-- -- après
+-- SELECT auteur.nom, livre.titre FROM livre INNER JOIN auteur 
+-- ON livre.auteur_id = auteur.id;
+
+-- -- ou la requête équivalente...
+
+-- SELECT auteur.nom, livre.titre FROM auteur INNER JOIN livre 
+-- ON livre.auteur_id = auteur.id;
 
