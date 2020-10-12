@@ -67,9 +67,9 @@
     var_dump ($p1);
     var_dump($p2);
 
+
     // 3. Simple, mais avec un constructeur
     class PersonneC {
-
         private $nom;
         private $prenom;
         
@@ -106,8 +106,13 @@
             }
         }
     }
+
     $p2 = new PersonneC("Scorsese", "Martin");
     var_dump ($p2);
+    $p3 = new PersonneC("Scorsesi", "Martina");
+    $p4 = new PersonneC("Coppola", "Francis");
+    $p4->setNom("Lala");
+    echo $p4->getPrenom();
 
 
 
