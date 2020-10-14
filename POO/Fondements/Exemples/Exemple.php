@@ -100,7 +100,6 @@ function afficherLivre ($livre){
     //
 }
 
-sort($monArray);
 
 
 
