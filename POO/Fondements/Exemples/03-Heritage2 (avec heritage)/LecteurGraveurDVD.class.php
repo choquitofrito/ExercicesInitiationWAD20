@@ -11,4 +11,13 @@ class LecteurGraveurDVD extends AppareilDVD
         $this->vitesseLecture = $vitesseLecture;
         $this->vitesseEnregistrement = $vitesseEnregistrement;
     }
+    public function lireDVD()
+    {
+        echo "<br>Je lis un DVD";
+    }
+
+    public function enregistrerDVD()
+    {
+        echo "<br>J'enregistre un DVD";
+    }
 }
