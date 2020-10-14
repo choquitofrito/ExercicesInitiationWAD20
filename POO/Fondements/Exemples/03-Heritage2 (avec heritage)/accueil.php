@@ -16,6 +16,8 @@
     $l1->lireDVD();
     $le1->lireDVD();
     $le1->enregistrerDVD();
+
+    $l1->coucou(); // ne pas accèsible depuis l'exterieur
     
     var_dump ($l1);
     var_dump ($le1);
