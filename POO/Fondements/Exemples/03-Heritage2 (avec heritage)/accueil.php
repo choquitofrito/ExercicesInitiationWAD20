@@ -13,6 +13,10 @@
  
     $l1 = new LecteurDVD("Sony", 400);
     $le1 = new LecteurGraveurDVD("Sony", 400,300);
+    $l1->lireDVD();
+    $le1->lireDVD();
+    $le1->enregistrerDVD();
+    
     var_dump ($l1);
     var_dump ($le1);
 
