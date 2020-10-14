@@ -8,8 +8,4 @@ class LecteurDVD extends AppareilDVD
     {
         parent::__construct($marque, $vitesseLecture);
     }
-    public function lireDVD()
-    {
-        echo "<br>Je lis un DVD";
-    }
 }

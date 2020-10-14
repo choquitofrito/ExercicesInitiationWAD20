@@ -1,6 +1,6 @@
 <?php
 
-abstract class AppareilDVD
+class AppareilDVD
 {
     public $marque;
     public $vitesseLecture;
@@ -10,5 +10,10 @@ abstract class AppareilDVD
         $this->marque = $marque;
         $this->vitesseLecture = $vitesseLecture;
     }
+    public function lireDVD()
+    {
+        echo "<br>Je lis un DVD";
+    }
+
     
 }
