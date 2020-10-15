@@ -6,11 +6,11 @@ class Departement {
     public $nom;
     public Manager $managerDepartement;
 
-    public function __construct ($nom){
+    public function __construct ($nom, Manager $managerDepartement){
         $this->nom = $nom;
-    }
-    // injection de dépendances avec un set
-    public function setManagerDepartement (Manager $managerDepartement){
         $this->managerDepartement = $managerDepartement;
     }
+    // public function setManagerDepartement (Manager $managerDepartement){
+    //     $this->managerDepartement = $managerDepartement;
+    // }
 }

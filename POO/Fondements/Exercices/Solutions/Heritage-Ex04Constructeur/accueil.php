@@ -11,17 +11,16 @@
     require_once "./Manager.class.php";
     require_once "./Departement.class.php";
 
-    $manager2 = new Manager ("Shin Yu",5000);
-    var_dump ($manager2);
-
-    $departement = new Departement("Analyse");
-    $manager = new Manager ("Shin Yu",5000);
-    $departement->setManagerDepartement($manager);
+    $manager = new Manager("Lola",4000);
+    $departement = new Departement("Analyse",$manager);
     var_dump ($departement);
-
-
-    $manager->setDepartementGere($departement);
-    var_dump ($manager);
+    // var_dump ($departement);
+    // $manager = new Manager ("Shin Yu",5000);
+    // var_dump ($manager);
+    // $manager->setDepartementGere($departement);
+    // var_dump ($manager);
+    // $departement->setManagerDepartement($manager);
+    // var_dump ($departement);
 
 
 
