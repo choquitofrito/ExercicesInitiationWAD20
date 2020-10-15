@@ -1,5 +1,7 @@
 <?php
 
+// ne lancez pas ce code, c'est juste une serie d'exemples
+
 $piste1Nom = "Bad";
 $piste1Duree = 300;
 $piste1Auteur = "Michael Jackson";
