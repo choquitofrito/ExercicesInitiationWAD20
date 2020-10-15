@@ -13,6 +13,7 @@ class Departement {
     // injection de dépendances avec un set pour le Manager
     public function setManagerDepartement (Manager $managerDepartement){
         $this->managerDepartement = $managerDepartement;
+        // $managerDepartement->setDepartementGere($this);
     }
 
     // injection de dépendances avec un set pour les Employes

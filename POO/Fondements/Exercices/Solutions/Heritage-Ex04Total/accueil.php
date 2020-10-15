@@ -16,12 +16,18 @@
     $employe3 = new Employe ("Joanna",3000);
     $departement = new Departement("Programmation");
 
+    // du côté Departement -> employés qui travaillent
     $employes = [$employe1,$employe2, $employe3];
     $departement->setArrayEmployes($employes);
     
     $employe4 = new Employe ("Thao",10000);
     $departement->rajouterEmploye($employe4);
-    var_dump ($departement); 
+    var_dump ($departement);
+    // du côté Departement -> manager qui gére
+
+    $manager1 = new Manager ("Gloria",90000);
+    $departement->setManagerDepartement($manager1);
+
     
 
 
