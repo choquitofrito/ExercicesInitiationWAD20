@@ -1,5 +1,7 @@
 <?php
 
+
+
 abstract class Animal {
     public $nom;
     public $poids;

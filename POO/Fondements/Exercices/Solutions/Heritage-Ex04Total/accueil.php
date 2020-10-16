@@ -27,6 +27,7 @@
 
     $manager1 = new Manager ("Gloria",90000);
     $departement->setManagerDepartement($manager1);
+    
 
     
 
