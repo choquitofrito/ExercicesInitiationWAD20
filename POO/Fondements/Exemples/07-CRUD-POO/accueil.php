@@ -24,10 +24,12 @@
     include_once "LivreManager.php";
 
     $livreManager = new LivreManager($db);
-    $livresArray = $livreManager->selectAll();
-    var_dump ($livresArray);
+    // $livresArray = $livreManager->selectAll();
+    // var_dump ($livresArray);
 
-    
+    $livresObjetsArray = $livreManager->selectAll();
+    var_dump ($livresObjetsArray);
+
 
 
     // $l1 = new Livre (1,"Coucou",45.... etc...)

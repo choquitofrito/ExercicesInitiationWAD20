@@ -16,7 +16,20 @@ class LivreManager {
         // on renvoi un array de livres
         // var_dump ($stmt->errorInfo());
         // die();
-        return $arrLivres;
+      
+
+        $arrObjetsLivres = [];
+        // $unLivreArray est un livre sous la forme d'un array
+        // $arrLivres est un array qui contient de Livres sous la forme d'array
+        // $arrObjetsLivres est un array qui contient de Livres sous la forme d'objets
+        foreach ($arrLivres as $unLivreArray){
+            $objectLivre = new Livre ($unLivreArray);
+            $arrObjetsLivres[] = $objectLivre;
+            // var_dump ($unLivreArray);
+
+        }
+        // return $arrLivres;
+        return $arrObjetsLivres;
     }
 
 }
