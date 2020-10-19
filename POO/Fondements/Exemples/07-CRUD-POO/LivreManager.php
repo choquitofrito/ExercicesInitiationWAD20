@@ -1,5 +1,7 @@
 <?php
 
+include_once "Livre.php";
+
 class LivreManager {
 
     public $db;
@@ -25,10 +27,12 @@ class LivreManager {
         foreach ($arrLivres as $unLivreArray){
             $objectLivre = new Livre ($unLivreArray);
             $arrObjetsLivres[] = $objectLivre;
+            // var_dump ($objectLivre);
             // var_dump ($unLivreArray);
 
         }
-        // return $arrLivres;
+        // return $arrLivres; // on ne veut plus un array d'arrays!
+ 
         return $arrObjetsLivres;
     }
 

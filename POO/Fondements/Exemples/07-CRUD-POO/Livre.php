@@ -14,10 +14,10 @@ class Livre {
     }
     public function hydrate($arrayInit){
         foreach ($arrayInit as $propriete => $valeur){
-            echo "<br>";
-            echo $propriete;
-            echo ":";
-            echo $valeur;
+            // echo "<br>";
+            // echo $propriete;
+            // echo ":";
+            // echo $valeur;
             $methode = "set".ucfirst($propriete); // un string contenant 
                                                 // setTitre au lieu de 
                                                 // settitre

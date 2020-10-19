@@ -14,9 +14,8 @@
     // créer une connexion à la BD
     try {
         $db = new PDO(DBDRIVER . ': host=' . DBHOST . ';port=' . DBPORT . ';dbname=' . DBNAME .
-        ';charset=' . DBCHARSET, DBUSER, DBPASS);
-    }
-    catch (Exception $e){
+            ';charset=' . DBCHARSET, DBUSER, DBPASS);
+    } catch (Exception $e) {
         echo "Erreur";
         die();
     }
@@ -28,7 +27,8 @@
     // var_dump ($livresArray);
 
     $livresObjetsArray = $livreManager->selectAll();
-    var_dump ($livresObjetsArray);
+
+    var_dump($livresObjetsArray);
 
 
 
