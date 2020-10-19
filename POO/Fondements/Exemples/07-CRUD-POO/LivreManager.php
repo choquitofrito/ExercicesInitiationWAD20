@@ -13,7 +13,7 @@ class LivreManager {
         $stmt = $db->prepare ($sql);
         $stmt->execute();
         $arrLivres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        // on renvoi un array de livres
         return $arrLivres;
     }
 
