@@ -10,10 +10,12 @@ class LivreManager {
 
     public function selectAll (){
         $sql = "SELECT * FROM livre";
-        $stmt = $db->prepare ($sql);
+        $stmt = $this->db->prepare ($sql);
         $stmt->execute();
         $arrLivres = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // on renvoi un array de livres
+        // var_dump ($stmt->errorInfo());
+        // die();
         return $arrLivres;
     }
 

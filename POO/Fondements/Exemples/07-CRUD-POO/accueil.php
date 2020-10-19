@@ -23,6 +23,12 @@
     include_once "Livre.php";
     include_once "LivreManager.php";
 
+    $livreManager = new LivreManager($db);
+    $livresArray = $livreManager->selectAll();
+    var_dump ($livresArray);
+
+    
+
 
     // $l1 = new Livre (1,"Coucou",45.... etc...)
     // $l1 = new Livre (,,45.... etc...) // non!
