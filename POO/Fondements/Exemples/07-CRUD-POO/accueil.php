@@ -26,13 +26,27 @@
     // $l2->hydrate(['id' => 2,
     //         'prix' => 22]);
 
+    // créer un objet
     $l1 = new Livre([
         // 'id' => 1,
         'titre' => 'Coucou',
         'prix' => 22,
         'isbn' => '233242342344'
     ]);
-    var_dump ($l1);
+    var_dump($l1);
+
+    // $l1->setTitre("Lala");
+    // $l1->setIsbn(324234234);
+    // $l1->setPrix(22);
+    // trop long!!!
+
+    // si on veut changer un objet déjà créé
+    $l1->hydrate([
+        'titre' => 'Lala',
+        'prix' => 22
+    ]);
+
+
 
 
     ?>

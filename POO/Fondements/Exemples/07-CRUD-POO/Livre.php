@@ -10,7 +10,9 @@ class Livre {
     public $auteur_id;
 
     public function __construct($arrayInit){
-        
+        $this->hydrate($arrayInit);
+    }
+    public function hydrate($arrayInit){
         foreach ($arrayInit as $propriete => $valeur){
             echo "<br>";
             echo $propriete;
@@ -19,16 +21,8 @@ class Livre {
             $methode = "set".ucfirst($propriete); // un string contenant 
                                                 // setTitre au lieu de 
                                                 // settitre
-            $this->$methode ($valeur);
-            
+            $this->$methode ($valeur);         
         }
-    }
-
-    
-
-    public function hydrate(){
-
-
     }
 
 
