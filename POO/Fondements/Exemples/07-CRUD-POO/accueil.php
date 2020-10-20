@@ -38,15 +38,16 @@
         'titre' => 'La guerre de Togo',
         'prix' => 18
     ]);
-    var_dump ($mesLivresFiltres);
+    // var_dump ($mesLivresFiltres);
     $mesLivresFiltresSansFiltres = $livreManager->selectFiltres();
-    var_dump ($mesLivresFiltresSansFiltres); 
+    // var_dump ($mesLivresFiltresSansFiltres); 
 
     $nouveauLivre = new Livre (['titre'=>'Superman',
                                 'prix'=>20,
                                 'description'=>'blibliblibli',
                                 'date_publication'=>'2000-09-29',
-                                'isbn'=>'4235234523452345']);
+                                'isbn'=>'4235234523452345',
+                                'auteur_id'=>2]);
     $livreManager->insert($nouveauLivre);
 
 

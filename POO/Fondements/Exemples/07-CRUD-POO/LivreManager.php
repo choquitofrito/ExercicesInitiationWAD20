@@ -111,7 +111,7 @@ class LivreManager {
         // INSERT INTO livre (id, titre, prix, description, date_publication, isbn, auteur_id) 
         // VALUES (NULL, :id, :titre, ...)
         $sql = "INSERT INTO livre (id, titre, prix, description, date_publication, isbn, auteur_id) 
-         VALUES (NULL, :titre, :prix, :description, :date_publication, :isbn)";
+         VALUES (NULL, :titre, :prix, :description, :date_publication, :isbn, :auteur_id)";
         
         $stmt = $this->db->prepare($sql);
         // bindValues ....
@@ -124,6 +124,7 @@ class LivreManager {
         $stmt->bindValue (":auteur_id",$unLivre->getAuteur_id());
         
         $stmt->execute();
+        var_dump ($stmt->errorInfo());
     }
 
     
