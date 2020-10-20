@@ -72,8 +72,18 @@ class LivreManager {
                 $stmt->bindValue (":".$cle, $val);
             }
             $stmt->execute ();
+            // on obtient un array d'arrays qui représentent les livres
             $arrayResultat = $stmt->fetchAll (PDO::FETCH_ASSOC);
-            var_dump ($arrayResultat);
+
+
+            // transformer l'array d'array en array d'objets
+            $arrayResultatObjets = [];
+            foreach ($arrayResultat as $livreArray){
+                $objetLivre = new Livre($livreArray);
+                $arrayResultatObjets[] = $objetLivre;
+            }
+            //var_dump ($arrayResultatObjets);
+            return ($arrayResultatObjets);
         }
 
 

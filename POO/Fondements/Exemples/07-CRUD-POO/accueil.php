@@ -38,6 +38,7 @@
         'titre' => 'La guerre de Togo',
         'prix' => 18
     ]);
+    var_dump ($mesLivresFiltres);
 
 
 
