@@ -50,19 +50,19 @@ class LivreManager {
         // var_dump ($sql);
         // var_dump (array_keys($arrayFiltres));
 
-        // on rajoute de couples cle =:cle dans un array 
-        $arrayFiltresChaine = [];
-        foreach ($arrayFiltres as $cle => $valeur){
-            $arrayFiltresChaine[] = $cle . " =:". $cle;
-        }
-        var_dump ($arrayFiltresChaine);
-        // on crée un string contenant les couples séparées par AND
-        $chaineFiltres = implode (" AND ", $arrayFiltresChaine);
-        var_dump ($chaineFiltres);
         
-        $sql = "SELECT * FROM Livre";
         
         if (!is_null ($arrayFiltres)) {
+            $sql = "SELECT * FROM Livre";
+            // on rajoute de couples cle =:cle dans un array 
+            $arrayFiltresChaine = [];
+            foreach ($arrayFiltres as $cle => $valeur){
+                $arrayFiltresChaine[] = $cle . " =:". $cle;
+            }
+            var_dump ($arrayFiltresChaine);
+            // on crée un string contenant les couples séparées par AND
+            $chaineFiltres = implode (" AND ", $arrayFiltresChaine);
+            
             $sql = $sql. " WHERE " . $chaineFiltres;
             $stmt = $this->db->prepare ($sql);
             // faire tous les bindValue (":cle",$val)

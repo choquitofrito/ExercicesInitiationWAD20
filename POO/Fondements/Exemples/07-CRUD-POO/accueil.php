@@ -39,6 +39,8 @@
         'prix' => 18
     ]);
     var_dump ($mesLivresFiltres);
+    $mesLivresFiltresSansFiltres = $livreManager->selectFiltres();
+    var_dump ($mesLivresFiltresSansFiltres); 
 
 
 
