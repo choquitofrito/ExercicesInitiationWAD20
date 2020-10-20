@@ -49,9 +49,7 @@ class LivreManager {
         // }
         // var_dump ($sql);
         // var_dump (array_keys($arrayFiltres));
-
-        
-        
+  
         if (!is_null ($arrayFiltres)) {
             $sql = "SELECT * FROM Livre";
             // on rajoute de couples cle =:cle dans un array 
@@ -109,7 +107,24 @@ class LivreManager {
         // var_dump ($stmt->errorInfo());
     }
 
+    public function insert (Livre $unLivre){
+        // INSERT INTO livre (id, titre, prix, description, date_publication, isbn, auteur_id) 
+        // VALUES (NULL, :id, :titre, ...)
+        $sql = "INSERT INTO livre (id, titre, prix, description, date_publication, isbn, auteur_id) 
+         VALUES (NULL, :titre, :prix, :description, :date_publication, :isbn)";
+        
+        $stmt = $this->db->prepare($sql);
+        // bindValues ....
 
+        $stmt->bindValue (":titre",$unLivre->getTitre());
+        $stmt->bindValue (":prix",$unLivre->getPrix());
+        $stmt->bindValue (":description",$unLivre->getDescription());
+        $stmt->bindValue (":date_publication",$unLivre->getDate_publication());
+        $stmt->bindValue (":isbn",$unLivre->getIsbn());
+        $stmt->bindValue (":auteur_id",$unLivre->getAuteur_id());
+        
+        $stmt->execute();
+    }
 
     
 

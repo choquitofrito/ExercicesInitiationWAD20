@@ -42,7 +42,12 @@
     $mesLivresFiltresSansFiltres = $livreManager->selectFiltres();
     var_dump ($mesLivresFiltresSansFiltres); 
 
-
+    $nouveauLivre = new Livre (['titre'=>'Superman',
+                                'prix'=>20,
+                                'description'=>'blibliblibli',
+                                'date_publication'=>'2000-09-29',
+                                'isbn'=>'4235234523452345']);
+    $livreManager->insert($nouveauLivre);
 
 
 
