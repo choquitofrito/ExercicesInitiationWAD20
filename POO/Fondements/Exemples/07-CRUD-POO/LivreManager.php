@@ -38,10 +38,7 @@ class LivreManager {
 
     // select avec de filtres
     public function selectFiltres ($arrayFiltres = null){
-        
-        
         // si vide: SELECT * FROM Livre 
-
         // si pas vide : SELECT * FROM Livre WHERE cle1 = :cle1 AND cle2 = :cle2 etc...
         // si pas vide : SELECT * FROM Livre WHERE prix = :prix AND titre = :titre etc...
         // $sql = "SELECT * FROM Livre WHERE ";
@@ -64,6 +61,7 @@ class LivreManager {
         var_dump ($chaineFiltres);
         
         $sql = "SELECT * FROM Livre";
+        
         if (!is_null ($arrayFiltres)) {
             $sql = $sql. " WHERE " . $chaineFiltres;
             $stmt = $this->db->prepare ($sql);
@@ -84,6 +82,10 @@ class LivreManager {
             }
             //var_dump ($arrayResultatObjets);
             return ($arrayResultatObjets);
+        }
+        else {
+            $tousLesLivres = $this->selectAll();
+            return $tousLesLivres;
         }
 
 
