@@ -42,34 +42,36 @@
     $mesLivresFiltresSansFiltres = $livreManager->selectFiltres();
     // var_dump ($mesLivresFiltresSansFiltres); 
 
-    $nouvelLivreArray = ['titre'=>'Coucou 49',
-                        'prix'=>20,
-                        'description'=>'Kelly Kapowski',
-                        'date_publication'=>'2000-09-29',
-                        'isbn'=>'4235234523452345',
-                        'auteur_id'=>2];
-    
+    $nouvelLivreArray = [
+        'titre' => 'Coucou 102',
+        'prix' => 20,
+        'description' => 'Kelly Kapowski',
+        'date_publication' => '2000-09-29',
+        'isbn' => '4235234523452345',
+        'auteur_id' => 2
+    ];
+
     // object livre à insèrer 
-    $nouveauLivre = new Livre ($nouvelLivreArray); // le livre à insèrer, n'a pas un id
+    $nouveauLivre = new Livre($nouvelLivreArray); // le livre à insèrer, n'a pas un id
 
     // chercher si un tel livre existe (les mêmes valeurs sauf l'id!)
-    
+
     $livreTrouve = $livreManager->selectFiltres($nouvelLivreArray);
-    if (!empty ($livreTrouve)){ // si le select trouve le livre, l'array ne sera pas vide
+    if (!empty($livreTrouve)) { // si le select trouve le livre, l'array ne sera pas vide
         echo "<h5>Le livre est déjà dans la BD</h5>";
-    }
-    else {
+    } else {
         $livreManager->insert($nouveauLivre); // nouvel id dans la BD
     }
-    
-    // update d'un livre qu'on vient d'insèrer
-    $nouveauLivre->setTitre("Vive les frites");
-//    var_dump ($nouveauLivre);
-    $livreManager->updateAuto ($nouveauLivre);
 
-    
-    
-    
+    // update d'un livre qu'on vient d'insèrer
+    $nouveauLivre->setTitre("Vive les frites II");
+    // var_dump ($nouveauLivre);
+    $livreManager->update($nouveauLivre);
+    // $livreManager->updateAuto($nouveauLivre);
+
+
+
+
 
 
 

@@ -156,40 +156,38 @@ class LivreManager
         $arrayPropParam = [];
      
         // rajouter à la requête toutes les couples proprieté = valeur
+        // ex: UPDATE Livre SET titre=:titre, prix=:prix
         // sauf l'id, car on ne peut pas faire UPDATE .... set id = :id
         // si on a RESTRICT dans les propriétés de la rélation
         foreach ($proprietes as $nomPropriete => $valPropriete) {
-            if (!is_array($valPropriete)  && $nomPropriete!="id") {
+            // nous avons (regardez le code de Livre.php)
+            // un array d'exemplaires (rajouté)
+            // et un objet Auteur. Ces propriétés 
+            // ne doivent pas être utilisées dans l'UPDATE
+            // Pour faire la différence entre les proprietés de base
+            // et les propriétés liées aux associations, on peut
+            // regarder s'il s'agit d'un array ou d'un objet
+            // (la liste d'exemplaires est un array, l'auteur est un objet
+            if (!is_array($valPropriete)  && (!is_object($valPropriete)) && $nomPropriete!="id") {
                 $arrayPropParam[] = $nomPropriete . "=:" . $nomPropriete;
             }
         };
 
         $sql = $sql .  implode(",", $arrayPropParam);
+        // le where, autrement on changera toutes les lignes!!
         $sql = $sql . " WHERE id=:id";
         $stmt = $this->db->prepare($sql);
 
         // faire les bindValue, on permet l'id car on doit faire bind (il est dns le WHERE)
         foreach ($proprietes as $nomPropriete => $valPropriete) {
-            if (!is_array($valPropriete)) {
+            if (!is_array($valPropriete) && (!is_object($valPropriete))) {
                 $stmt->bindValue(":" . $nomPropriete, $valPropriete);
             }
         }
         
         
         $stmt->execute();
-        var_dump($stmt->errorInfo());
-
-        // $sql = $sql. " prix = '".$unLivre->getPrix(). "' , ";
-        // $sql = $sql. " description = '".$unLivre->getDescription(). "' , ";
-        // $sql = $sql. " date_publication = '".$unLivre->getDate_publication(). "' , ";
-        // $sql = $sql. " isbn = '".$unLivre->getIsbn(). "' , ";
-        // $sql = $sql. " auteur_id = '".$unLivre->getAuteur_id(). "' ";
-        // $sql = $sql. " WHERE listeExemplaires = :listeExemplaires";
-        // $stmt= $this->db->prepare($sql);
-        // $stmt->bindValue (":id",$unLivre->getId());
-        // $stmt->execute();
-        // var_dump ($sql);
-        // var_dump ($stmt->errorInfo());
+        //var_dump($stmt->errorInfo());
 
     }
 }
