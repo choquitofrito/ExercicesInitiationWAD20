@@ -42,14 +42,28 @@
     $mesLivresFiltresSansFiltres = $livreManager->selectFiltres();
     // var_dump ($mesLivresFiltresSansFiltres); 
 
-    $nouveauLivre = new Livre (['titre'=>'Superman',
-                                'prix'=>20,
-                                'description'=>'blibliblibli',
-                                'date_publication'=>'2000-09-29',
-                                'isbn'=>'4235234523452345',
-                                'auteur_id'=>2]);
-    $livreManager->insert($nouveauLivre);
+    $nouvelLivreArray = ['titre'=>'Superman 7',
+                        'prix'=>20,
+                        'description'=>'blibliblibli',
+                        'date_publication'=>'2000-09-29',
+                        'isbn'=>'4235234523452345',
+                        'auteur_id'=>2];
+    
+    $nouveauLivre = new Livre ($nouvelLivreArray); // le livre à insèrer
 
+    // chercher si un tel livre existe (les mêmes valeurs sauf l'id!)
+    
+    $livreTrouve = $livreManager->selectFiltres($nouvelLivreArray);
+    if (!empty ($livreTrouve)){ // si le select trouve le livre, l'array ne sera pas vide
+        echo "<h5>Le livre est déjà dans la BD</h5>";
+    }
+    else {
+        $livreManager->insert($nouveauLivre);
+        
+    }
+    
+    
+    
 
 
 
