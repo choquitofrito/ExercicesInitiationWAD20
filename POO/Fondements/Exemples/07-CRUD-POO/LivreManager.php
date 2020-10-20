@@ -66,8 +66,8 @@ class LivreManager {
         $sql = "SELECT * FROM Livre";
         if (!is_null ($arrayFiltres)) {
             $sql = $sql. " WHERE " . $chaineFiltres;
-            $stmt = $db->prepare ($sql);
-            // bindValue (":cle",$val)
+            $stmt = $this->db->prepare ($sql);
+            // faire tous les bindValue (":cle",$val)
             foreach ($arrayFiltres as $cle=>$val){
                 $stmt->bindValue (":".$cle, $val);
             }
