@@ -124,7 +124,43 @@ class LivreManager {
         $stmt->bindValue (":auteur_id",$unLivre->getAuteur_id());
         
         $stmt->execute();
+        // obtenir le dernier id, l'id du Livre qu'on vient d'insèrer
+        $unLivre->setId($this->db->lastInsertId());
         var_dump ($stmt->errorInfo());
+    }
+
+    public function update ($unLivre){
+        $sql = "UPDATE livre SET titre = '".$unLivre->getTitre(). "' , ";
+        $sql = $sql. " prix = '".$unLivre->getPrix(). "' , ";
+        $sql = $sql. " description = '".$unLivre->getDescription(). "' , ";
+        $sql = $sql. " date_publication = '".$unLivre->getDate_publication(). "' , ";
+        $sql = $sql. " isbn = '".$unLivre->getIsbn(). "' , ";
+        $sql = $sql. " auteur_id = '".$unLivre->getAuteur_id(). "' ";
+        $sql = $sql. " WHERE id=:id";
+        $stmt= $this->db->prepare($sql);
+        $stmt->bindValue (":id",$unLivre->getId());
+        $stmt->execute();
+        // var_dump ($sql);
+        // var_dump ($stmt->errorInfo());
+
+    }
+
+    public function updateAuto ($unLivre){
+        $sql = "UPDATE livre SET titre = '".$unLivre->getTitre(). "' , ";
+        $cles = 
+        
+        $sql = $sql. " prix = '".$unLivre->getPrix(). "' , ";
+        $sql = $sql. " description = '".$unLivre->getDescription(). "' , ";
+        $sql = $sql. " date_publication = '".$unLivre->getDate_publication(). "' , ";
+        $sql = $sql. " isbn = '".$unLivre->getIsbn(). "' , ";
+        $sql = $sql. " auteur_id = '".$unLivre->getAuteur_id(). "' ";
+        $sql = $sql. " WHERE id=:id";
+        $stmt= $this->db->prepare($sql);
+        $stmt->bindValue (":id",$unLivre->getId());
+        $stmt->execute();
+        var_dump ($sql);
+        var_dump ($stmt->errorInfo());
+
     }
 
     
