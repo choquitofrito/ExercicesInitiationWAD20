@@ -66,8 +66,17 @@ class LivreManager {
         $sql = "SELECT * FROM Livre";
         if (!is_null ($arrayFiltres)) {
             $sql = $sql. " WHERE " . $chaineFiltres;
+            $stmt = $db->prepare ($sql);
+            // bindValue (":cle",$val)
+            foreach ($arrayFiltres as $cle=>$val){
+                $stmt->bindValue (":".$cle, $val);
+            }
+            $stmt->execute ();
+            $arrayResultat = $stmt->fetchAll (PDO::FETCH_ASSOC);
+            var_dump ($arrayResultat);
         }
-        
+
+
 
     }
 
