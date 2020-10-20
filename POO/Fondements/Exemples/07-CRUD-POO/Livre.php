@@ -9,6 +9,9 @@ class Livre {
     public $isbn;
     public $auteur_id;
 
+    // cettre propriété est un array
+    public $listeExemplaires = []; // array d'objets Exemplaire
+
     public function __construct($arrayInit){
         $this->hydrate($arrayInit);
     }

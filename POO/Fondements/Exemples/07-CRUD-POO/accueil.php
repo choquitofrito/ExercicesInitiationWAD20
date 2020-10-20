@@ -42,9 +42,9 @@
     $mesLivresFiltresSansFiltres = $livreManager->selectFiltres();
     // var_dump ($mesLivresFiltresSansFiltres); 
 
-    $nouvelLivreArray = ['titre'=>'Coucou 2',
+    $nouvelLivreArray = ['titre'=>'Coucou 49',
                         'prix'=>20,
-                        'description'=>'blibliblibli',
+                        'description'=>'Kelly Kapowski',
                         'date_publication'=>'2000-09-29',
                         'isbn'=>'4235234523452345',
                         'auteur_id'=>2];
@@ -63,9 +63,9 @@
     }
     
     // update d'un livre qu'on vient d'insèrer
-    $nouveauLivre->setTitre("The Hobbit");
-    var_dump ($nouveauLivre);
-    $livreManager->update ($nouveauLivre);
+    $nouveauLivre->setTitre("Vive les frites");
+//    var_dump ($nouveauLivre);
+    $livreManager->updateAuto ($nouveauLivre);
 
     
     
