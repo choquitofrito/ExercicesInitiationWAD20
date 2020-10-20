@@ -28,7 +28,20 @@
 
     $livresObjetsArray = $livreManager->selectAll();
 
-    var_dump($livresObjetsArray);
+    var_dump($livresObjetsArray[5]);
+    // effacer en envoyant un objet
+    // $livreManager->delete ($livresObjetsArray[5]);
+    // effacer en envoyant un id
+    // $livreManager->deleteParId (9);
+
+    $mesLivresFiltres = $livreManager->selectFiltres([
+        'titre' => 'La guerre de Togo',
+        'prix' => 18
+    ]);
+
+
+
+
 
 
 
