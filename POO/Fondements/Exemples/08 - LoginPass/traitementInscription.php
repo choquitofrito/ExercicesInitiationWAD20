@@ -11,7 +11,7 @@
     <?php
     // var_dump($_POST);
     
-    // 1. Connecter à la BD
+    // 0. Connecter à la BD
 
     include "./config/db.php";
     // créer une connexion à la BD
@@ -22,6 +22,11 @@
         echo "Erreur";
         die();
     }
+
+    // 1. Vérifier si le client existe déjà
+    // EXO!
+    // 1.1. Chercher par mail le Client
+
 
     // 2. Vérifier passwords pareils (du form, pas avec la BD)
     $mot_pass = $_POST['mot_pass'];
