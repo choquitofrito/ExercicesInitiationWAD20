@@ -31,8 +31,35 @@
     $stmt = $db->prepare($sql);
     $stmt->bindValue(":email",$email);
     $stmt->execute();
+    
     $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
     var_dump ($clients);
+    
+    // 4. Comparer les passwords : celui du formulaire 
+    // et celui de la BD
+    if (!empty ($clients)){
+        $mot_pass_hash_bd = $clients[0]['mot_pass'];
+
+        if (password_verify ($mot_pass, $mot_pass_hash_bd)==true){
+            // bon pass
+            header ("location: ./accueil.php");
+        }
+        else { 
+            // mauvais pass
+            echo "Mot de pass incorrect";
+            die();
+            // redirigez vers login, page erreur, utiliser ajax.....
+        }
+    }
+    else {
+        // il n'y a pas de client avec cet email
+        echo "Client pas trouvé";
+        die();
+        // re-dirigez vers la page de login ou autre
+
+        die();
+    }
+
 
     ?>
 </body>
