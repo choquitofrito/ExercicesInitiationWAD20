@@ -49,7 +49,7 @@
     $stmt->bindValue(":prenom", $prenom);
     $stmt->bindValue(":adresse", $adresse);
     $stmt->bindValue(":email", $email);
-    $stmt->bindValue(":mot_pass", $mot_pass);
+    $stmt->bindValue(":mot_pass", $mot_pass_hash); // attention!!!! pas stocker le password sans hasher!
     $stmt->execute();
     var_dump ($stmt->errorInfo());
     
