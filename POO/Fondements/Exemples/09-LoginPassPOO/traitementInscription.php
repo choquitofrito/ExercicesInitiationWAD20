@@ -63,6 +63,7 @@
     // Utilisez filter_vars, ou une librairie déjà faite
     $email = filter_var ($email,FILTER_SANITIZE_EMAIL); // enlever des caractères illegaux d'un mail
     $email = filter_var ($email,FILTER_VALIDATE_EMAIL); // verifier format adresse valide (ex: "@")
+                                                        // la fonction renvoie le mail si ok
 
     
     // si email invalide on obtient null: il faut lancer exception ou re-diriger
