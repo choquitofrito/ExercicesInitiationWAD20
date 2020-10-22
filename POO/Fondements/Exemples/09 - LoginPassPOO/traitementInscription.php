@@ -11,6 +11,8 @@
     <?php
     // var_dump($_POST);
     
+    include "./ClientManager.php";
+
     // 0. Connecter à la BD
 
     include "./config/db.php";
@@ -26,7 +28,7 @@
     // 1. Vérifier si le client existe déjà
     // EXO!
     // 1.1. Chercher par mail le Client
-
+ 
 
     // 2. Vérifier passwords pareils (du form, pas avec la BD)
     $mot_pass = $_POST['mot_pass'];
@@ -41,23 +43,19 @@
     // 4. Créer une requête INSERT
     var_dump ($mot_pass_hash);
 
+    // prendre les données du formulaire et les stocker dans de variables
+    // pour les filtrer après (pas fait encore)
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $adresse = $_POST['adresse'];
     $email = $_POST['email'];
     
     // 5. Lancer la requête
-    $sql = "INSERT INTO client (id, nom, prenom, adresse, email, mot_pass) "
-        ."VALUES (null, :nom, :prenom, :adresse, :email, :mot_pass)";
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(":nom", $nom);
-    $stmt->bindValue(":prenom", $prenom);
-    $stmt->bindValue(":adresse", $adresse);
-    $stmt->bindValue(":email", $email);
-    $stmt->bindValue(":mot_pass", $mot_pass_hash); // attention!!!! pas stocker le password sans hasher!
-    $stmt->execute();
-    var_dump ($stmt->errorInfo());
-    
+    $clientManager = new ClientManager($db);
+    // $nouveauClient = new Client()
+    var_dump ($_POST);
+
+
 
     ?>
 </body>
