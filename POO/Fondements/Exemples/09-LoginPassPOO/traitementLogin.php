@@ -48,6 +48,7 @@
     // 4. Comparer les passwords : celui du formulaire 
     // et celui de la BD
     $mot_pass_hash_bd = $client->getMot_pass();
+    // Ne faites pas $client['mot_pass'] car $client n'est pas un array!!;
 
     // mot_pass contient la donnée du form
     if (password_verify($mot_pass, $mot_pass_hash_bd) == true) {
