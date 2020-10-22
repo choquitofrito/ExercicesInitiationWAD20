@@ -56,8 +56,9 @@
         header("location: ./accueil.php?email=" . $email);
     } else {
         // mauvais pass
-        echo "Mot de pass incorrect";
-        die();
+        // echo "Mot de pass incorrect"; // on ne verra JAMAIS ce message car on part de la page
+        header("location: ./formulaireLogin.php?message=Mauvais pass");
+        
         // redirigez vers login, page erreur, utiliser ajax.....
     }
     

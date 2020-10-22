@@ -13,6 +13,12 @@
         Password<input type="password" name="mot_pass"><br>
         <input type="submit" value="Se connecter">
     </form>
+    <?php
+    if (isset($_GET['message'])){
+        echo $_GET['message'];
+    }
+
+    ?>
 </body>
 
 </html>
