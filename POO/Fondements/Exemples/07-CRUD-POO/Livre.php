@@ -18,6 +18,7 @@ class Livre {
     public function __construct($arrayInit){
         $this->hydrate($arrayInit);
     }
+    
     public function hydrate($arrayInit){
         foreach ($arrayInit as $propriete => $valeur){
             // echo "<br>";
