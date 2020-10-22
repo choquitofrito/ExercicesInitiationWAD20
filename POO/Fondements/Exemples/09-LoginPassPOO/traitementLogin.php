@@ -10,7 +10,7 @@
 <body>
     <?php
     include "./ClientManager.php";
-    var_dump($_POST);
+    // var_dump($_POST);
 
     // 1. Connecter à la BD
     include "./config/db.php";
@@ -35,34 +35,31 @@
     $mot_pass = $_POST['mot_pass'];
 
     // 3. Chercher le client par email
-    $clientManager = new ClientManager($db);
-    $client = $clientManager->selectFiltres(['email' => $email]);
-
-    var_dump($client);
-    die();
+    $clientManager = new ClientManager($db); // renvoie un array d'objets, même s'il contient qu'un objet
+    $clients = $clientManager->selectFiltres(['email' => $email]); // possible dans une ligne...
+    var_dump ($clients);
+    if (empty($clients)){
+        echo "Cette adresse ne correspond à aucun client";
+        die(); // ou header, ou exception
+    }
+    // si pas vide, on continue le code : c'est certain qu'on a trouve le client
+    $client = $clients[0];
 
     // 4. Comparer les passwords : celui du formulaire 
     // et celui de la BD
-    if (!empty($clients)) {
-        $mot_pass_hash_bd = $clients[0]['mot_pass'];
+    $mot_pass_hash_bd = $client->getMot_pass();
 
-        if (password_verify($mot_pass, $mot_pass_hash_bd) == true) {
-            // bon pass
-            header("location: ./accueil.php?email=" . $email);
-        } else {
-            // mauvais pass
-            echo "Mot de pass incorrect";
-            die();
-            // redirigez vers login, page erreur, utiliser ajax.....
-        }
+    // mot_pass contient la donnée du form
+    if (password_verify($mot_pass, $mot_pass_hash_bd) == true) {
+        // bon pass
+        header("location: ./accueil.php?email=" . $email);
     } else {
-        // il n'y a pas de client avec cet email
-        echo "Client pas trouvé";
+        // mauvais pass
+        echo "Mot de pass incorrect";
         die();
-        // re-dirigez vers la page de login ou autre
-
-        die();
+        // redirigez vers login, page erreur, utiliser ajax.....
     }
+    
 
 
     ?>
