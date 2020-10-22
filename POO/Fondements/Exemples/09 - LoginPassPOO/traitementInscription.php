@@ -31,38 +31,56 @@
  
 
     // 2. Vérifier passwords pareils (du form, pas avec la BD)
+   
     $mot_pass = $_POST['mot_pass'];
     $mot_pass_copy = $_POST['mot_pass_copy'];
+
     if ($mot_pass != $mot_pass_copy){
         echo "Les passwords ne coincident pas";
         die();
         // header ("location: ....")
     } 
-    // 3. Hasher le password
-    $mot_pass_hash = password_hash($mot_pass, PASSWORD_DEFAULT, ['cost'=>12]);
-    // 4. Créer une requête INSERT
-    var_dump ($mot_pass_hash);
+    // 3. prendre les données du formulaire et les stocker dans de variables
+    // pour les filtrer après (pas fait encore).
 
-    // prendre les données du formulaire et les stocker dans de variables
-    // pour les filtrer après (pas fait encore)
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $adresse = $_POST['adresse'];
     $email = $_POST['email'];
     
-    // 5. Lancer la requête
+    // 4. Hasher le password
+    $mot_pass_hash = password_hash($mot_pass, PASSWORD_DEFAULT, ['cost'=>12]);
+
+    // 5. Filtrer les variables prises du POST
+    // filtrer à la main... cauchemar!!
+
+    // if (!mb_strpos("@", $email)){
+    //     echo "Le mail n'est pas correct";
+    //     die();
+    //     // redirection, re-affichage...
+    // }
+    
+    // Utilisez filter_vars
+    $email = filter_var ($email,FILTER_SANITIZE_EMAIL); // enlever des caractères illegaux d'un mail
+    $email = filter_var ($email,FILTER_VALIDATE_EMAIL); // verifier format adresse valide (ex: "@")
+    
+    // si email invalide, lancer exception ou re-diriger
+    // même chose pour le reste
+
+    // 6. Créer l'entité à insérer après avoir appliqué les filtres 
+    $client = new Client (['nom' => $nom,
+                            'prenom'=> $prenom,
+                            'email'=> $email,
+                            'adresse' => $adresse,
+                            'mot_pass'=> $mot_pass_hash]);
+
+
+    // Insérer dans la BD
     $clientManager = new ClientManager($db);
+    $nouveauClient = new Client($client);
 
-    // 6. (Pas habituel) Adpater les données du form à l'entité
-    $_POST['mot_pass'] = $mot_pass_hash;
-    unset($_POST['mot_pass_copy']); // on efface une propriété qui n'existe pas dans l'entité
-
-    // 7. Créer l'entité à insérer
-    $nouveauClient = new Client($_POST);
-
-    // 8. Insérer en utilisant le modèle
+    // 7. Insérer en utilisant le modèle
     $clientManager->insert($nouveauClient);
-
 
     var_dump ($nouveauClient);
 

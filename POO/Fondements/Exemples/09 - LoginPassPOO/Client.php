@@ -64,6 +64,7 @@ class Client {
      */ 
     public function setNom($nom)
     {
+        
         $this->nom = $nom;
 
         return $this;
@@ -114,6 +115,8 @@ class Client {
      */ 
     public function getEmail()
     {
+        
+
         return $this->email;
     }
 
@@ -124,8 +127,12 @@ class Client {
      */ 
     public function setEmail($email)
     {
-        $this->email = $email;
-
+        if (mb_stripos("@",$email)){ // il faudrait vérifier pour le point, la taille et toute sorte de choses
+            $this->email = $email;
+        }
+        else { 
+            throw new Exception ("Entity error, invalid mail");
+        }
         return $this;
     }
 
