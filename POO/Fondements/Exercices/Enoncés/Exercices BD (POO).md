@@ -1,6 +1,9 @@
 # Exercices de manipulation de modèles et HTML #
 
-Note: Les pages de base des exercices utilisent bootstrap mais ça ne change rien pour nous! C'est juste pour améliorer l'affichage
+Chaque exercice a un dossier associé (01 - dossier Ex01 etc...)
+
+Les pages de base des exercices utilisent bootstrap mais ça ne change rien pour nous! C'est juste pour améliorer l'affichage
+
 
 <br>
 
