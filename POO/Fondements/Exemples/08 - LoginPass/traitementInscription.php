@@ -10,7 +10,7 @@
 <body>
     <?php
     // var_dump($_POST);
-    
+
     // 0. Connecter à la BD
 
     include "./config/db.php";
@@ -31,24 +31,24 @@
     // 2. Vérifier passwords pareils (du form, pas avec la BD)
     $mot_pass = $_POST['mot_pass'];
     $mot_pass_copy = $_POST['mot_pass_copy'];
-    if ($mot_pass != $mot_pass_copy){
+    if ($mot_pass != $mot_pass_copy) {
         echo "Les passwords ne coincident pas";
         die();
         // header ("location: ....")
-    } 
+    }
     // 3. Hasher le password
-    $mot_pass_hash = password_hash($mot_pass, PASSWORD_DEFAULT, ['cost'=>12]);
+    $mot_pass_hash = password_hash($mot_pass, PASSWORD_DEFAULT, ['cost' => 12]);
     // 4. Créer une requête INSERT
-    var_dump ($mot_pass_hash);
+    var_dump($mot_pass_hash);
 
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $adresse = $_POST['adresse'];
     $email = $_POST['email'];
-    
+
     // 5. Lancer la requête
     $sql = "INSERT INTO client (id, nom, prenom, adresse, email, mot_pass) "
-        ."VALUES (null, :nom, :prenom, :adresse, :email, :mot_pass)";
+        . "VALUES (null, :nom, :prenom, :adresse, :email, :mot_pass)";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(":nom", $nom);
     $stmt->bindValue(":prenom", $prenom);
@@ -56,8 +56,8 @@
     $stmt->bindValue(":email", $email);
     $stmt->bindValue(":mot_pass", $mot_pass_hash); // attention!!!! pas stocker le password sans hasher!
     $stmt->execute();
-    var_dump ($stmt->errorInfo());
-    
+    var_dump($stmt->errorInfo());
+
 
     ?>
 </body>
