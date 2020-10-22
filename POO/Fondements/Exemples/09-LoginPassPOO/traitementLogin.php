@@ -9,8 +9,9 @@
 
 <body>
     <?php
+    include "./ClientManager.php";
     var_dump($_POST);
-    
+
     // 1. Connecter à la BD
     include "./config/db.php";
     // créer une connexion à la BD
@@ -22,36 +23,39 @@
         die();
     }
 
+
+
     // 2. Obtenir l'email et le mot de pass
-    $email = $_POST['email'];
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    // vérifier si email est null car autrement il faut 
+    // arreter le script (die), re-diriger ou exception
+
+    // stocker le mot de pass
     $mot_pass = $_POST['mot_pass'];
 
     // 3. Chercher le client par email
-    $sql = "SELECT * FROM client WHERE email = :email";
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(":email",$email);
-    $stmt->execute();
-    
-    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    var_dump ($clients);
-    
+    $clientManager = new ClientManager($db);
+    $client = $clientManager->selectFiltres(['email' => $email]);
+
+    var_dump($client);
+    die();
+
     // 4. Comparer les passwords : celui du formulaire 
     // et celui de la BD
-    if (!empty ($clients)){
+    if (!empty($clients)) {
         $mot_pass_hash_bd = $clients[0]['mot_pass'];
 
-        if (password_verify ($mot_pass, $mot_pass_hash_bd)==true){
+        if (password_verify($mot_pass, $mot_pass_hash_bd) == true) {
             // bon pass
-            header ("location: ./accueil.php?email=".$email);
-        }
-        else { 
+            header("location: ./accueil.php?email=" . $email);
+        } else {
             // mauvais pass
             echo "Mot de pass incorrect";
             die();
             // redirigez vers login, page erreur, utiliser ajax.....
         }
-    }
-    else {
+    } else {
         // il n'y a pas de client avec cet email
         echo "Client pas trouvé";
         die();

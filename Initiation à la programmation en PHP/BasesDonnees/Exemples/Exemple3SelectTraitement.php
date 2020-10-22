@@ -28,6 +28,7 @@
     $arrayResultat = $stmt->fetchAll(PDO::FETCH_ASSOC); // créer un array qui contient des arrays assoc
 
     var_dump ($arrayResultat);
+    
 
 
     ?>

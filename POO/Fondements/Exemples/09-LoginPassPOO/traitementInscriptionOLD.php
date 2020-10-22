@@ -66,8 +66,8 @@
 
     
     // si email invalide on obtient null: il faut lancer exception ou re-diriger
-    // même chose pour le reste de valeurs du form
-    
+    // car autrement le code continue à se lancer et le résultat est imprévisible!
+    // même chose pour le reste de valeurs du form.
 
     // 6. Créer l'entité à insérer après avoir appliqué les filtres 
     $client = new Client (['nom' => $nom,
