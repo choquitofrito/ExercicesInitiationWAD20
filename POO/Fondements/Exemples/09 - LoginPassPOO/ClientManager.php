@@ -32,7 +32,6 @@ class ClientManager
     // select avec de filtres
     public function selectFiltres($arrayFiltres = null)
     {
-
         if (!is_null($arrayFiltres)) {
             $sql = "SELECT * FROM Client";
             // on rajoute de couples cle =:cle dans un array 
@@ -90,37 +89,37 @@ class ClientManager
     {
         // INSERT INTO client (id, titre, prix, description, date_publication, isbn, auteur_id) 
         // VALUES (NULL, :id, :titre, ...)
-        $sql = "INSERT INTO client (id, titre, prix, description, date_publication, isbn, auteur_id) 
-         VALUES (NULL, :titre, :prix, :description, :date_publication, :isbn, :auteur_id)";
+        $sql = "INSERT INTO client (id, nom, prenom, adresse,email, mot_pass) 
+         VALUES (NULL,:nom, :prenom,:adresse, :email, :mot_pass )";
 
         $stmt = $this->db->prepare($sql);
         // bindValues ....
 
-        $stmt->bindValue(":titre", $unClient->getTitre());
-        $stmt->bindValue(":prix", $unClient->getPrix());
-        $stmt->bindValue(":description", $unClient->getDescription());
-        $stmt->bindValue(":date_publication", $unClient->getDate_publication());
-        $stmt->bindValue(":isbn", $unClient->getIsbn());
-        $stmt->bindValue(":auteur_id", $unClient->getAuteur_id());
-
+        $stmt->bindValue(":nom", $unClient->getNom());
+        $stmt->bindValue(":prenom", $unClient->getPrenom());
+        $stmt->bindValue(":adresse", $unClient->getAdresse());
+        $stmt->bindValue(":email", $unClient->getEmail());
+        $stmt->bindValue(":mot_pass", $unClient->getMot_pass());
+       
         $stmt->execute();
         // obtenir le dernier id, l'id du Client qu'on vient d'insèrer
         $unClient->setId($this->db->lastInsertId());
         var_dump($stmt->errorInfo());
     }
 
+    // adapter à la class Client, car c'est une méthode de Livre
     public function update($unClient)
     {
-        $sql = "UPDATE client SET titre = '" . $unClient->getTitre() . "' , ";
-        $sql = $sql . " prix = '" . $unClient->getPrix() . "' , ";
-        $sql = $sql . " description = '" . $unClient->getDescription() . "' , ";
-        $sql = $sql . " date_publication = '" . $unClient->getDate_publication() . "' , ";
-        $sql = $sql . " isbn = '" . $unClient->getIsbn() . "' , ";
-        $sql = $sql . " auteur_id = '" . $unClient->getAuteur_id() . "' ";
-        $sql = $sql . " WHERE id=:id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id", $unClient->getId());
-        $stmt->execute();
+        // $sql = "UPDATE client SET titre = '" . $unClient->getTitre() . "' , ";
+        // $sql = $sql . " prix = '" . $unClient->getPrix() . "' , ";
+        // $sql = $sql . " description = '" . $unClient->getDescription() . "' , ";
+        // $sql = $sql . " date_publication = '" . $unClient->getDate_publication() . "' , ";
+        // $sql = $sql . " isbn = '" . $unClient->getIsbn() . "' , ";
+        // $sql = $sql . " auteur_id = '" . $unClient->getAuteur_id() . "' ";
+        // $sql = $sql . " WHERE id=:id";
+        // $stmt = $this->db->prepare($sql);
+        // $stmt->bindValue(":id", $unClient->getId());
+        // $stmt->execute();
         // var_dump ($sql);
         // var_dump ($stmt->errorInfo());
 
@@ -133,18 +132,16 @@ class ClientManager
         $arrayPropParam = [];
      
         // rajouter à la requête toutes les couples proprieté = valeur
-        // ex: UPDATE Client SET titre=:titre, prix=:prix
+        // ex: UPDATE Client SET nom=:nom, prenom=:prenom
         // sauf l'id, car on ne peut pas faire UPDATE .... set id = :id
         // si on a RESTRICT dans les propriétés de la rélation
         foreach ($proprietes as $nomPropriete => $valPropriete) {
             // nous avons (regardez le code de Client.php)
-            // un array d'exemplaires (rajouté)
-            // et un objet Auteur. Ces propriétés 
-            // ne doivent pas être utilisées dans l'UPDATE
+            // un array d'emprunts (rajouté)
             // Pour faire la différence entre les proprietés de base
             // et les propriétés liées aux associations, on peut
             // regarder s'il s'agit d'un array ou d'un objet
-            // (la liste d'exemplaires est un array, l'auteur est un objet
+            // (la liste d'emprunts est un array, l'auteur (ici il n'y a pas) serait 
             if (!is_array($valPropriete)  && (!is_object($valPropriete)) && $nomPropriete!="id") {
                 $arrayPropParam[] = $nomPropriete . "=:" . $nomPropriete;
             }
@@ -161,8 +158,6 @@ class ClientManager
                 $stmt->bindValue(":" . $nomPropriete, $valPropriete);
             }
         }
-        
-        
         $stmt->execute();
         //var_dump($stmt->errorInfo());
 
