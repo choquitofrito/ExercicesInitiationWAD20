@@ -170,10 +170,11 @@ class Client {
 
     // rajouterEmprunt (Emprunt $unEmprunt)
     public function rajouterEmprunt ($unEmprunt){
-        
+        $this->emprunts [] = $unEmprunt;
     }
     
     // effacerEmprunt (Emprunt $unEmprunt)
+    
     // effacerEmpruntPos ($pos) // rare... on ne connait pas la position d'un emprunt dans la liste
 
 
