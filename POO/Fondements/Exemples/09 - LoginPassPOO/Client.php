@@ -24,6 +24,7 @@ class Client {
             $this->$methode ($valeur);         
         }
     }
+    
 
 
     /**

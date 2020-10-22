@@ -52,7 +52,20 @@
     
     // 5. Lancer la requête
     $clientManager = new ClientManager($db);
-    // $nouveauClient = new Client()
+
+    // 6. (Pas habituel) Adpater les données du form à l'entité
+    $_POST['mot_pass'] = $mot_pass_hash;
+    unset($_POST['mot_pass_copy']); // on efface une propriété qui n'existe pas dans l'entité
+
+    // 7. Créer l'entité à insérer
+    $nouveauClient = new Client($_POST);
+
+    // 8. Insérer en utilisant le modèle
+    $clientManager->insert($nouveauClient);
+
+
+    var_dump ($nouveauClient);
+
     var_dump ($_POST);
 
 
