@@ -1,8 +1,8 @@
 <?php
 
-include_once "Livre.php";
+include_once "Client.php";
 
-class LivreManager
+class ClientManager
 {
 
     public $db;
@@ -14,55 +14,33 @@ class LivreManager
 
     public function selectAll()
     {
-        $sql = "SELECT * FROM livre";
+        $sql = "SELECT * FROM client";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        $arrLivres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // on renvoi un array de livres
-        // var_dump ($stmt->errorInfo());
-        // die();
+        $arrClients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-        $arrObjetsLivres = [];
-        // $unLivreArray est un livre sous la forme d'un array
-        // $arrLivres est un array qui contient de Livres sous la forme d'array
-        // $arrObjetsLivres est un array qui contient de Livres sous la forme d'objets
-        foreach ($arrLivres as $unLivreArray) {
-            $objectLivre = new Livre($unLivreArray);
-            $arrObjetsLivres[] = $objectLivre;
-            // var_dump ($objectLivre);
-            // var_dump ($unLivreArray);
+        $arrObjetsClients = [];
+        foreach ($arrClients as $unClientArray) {
+            $objectClient = new Client($unClientArray);
+            $arrObjetsClients[] = $objectClient;
 
         }
-        // return $arrLivres; // on ne veut plus un array d'arrays!
 
-        return $arrObjetsLivres;
+        return $arrObjetsClients;
     }
 
     // select avec de filtres
     public function selectFiltres($arrayFiltres = null)
     {
-        // si vide: SELECT * FROM Livre 
-        // si pas vide : SELECT * FROM Livre WHERE cle1 = :cle1 AND cle2 = :cle2 etc...
-        // si pas vide : SELECT * FROM Livre WHERE prix = :prix AND titre = :titre etc...
-        // $sql = "SELECT * FROM Livre WHERE ";
-
-        // $chaineFiltres = "";
-        // foreach ($arrayFiltres as $key => $value){
-        //     $sql = $sql . $key . " = :" . $key . " AND "; 
-        // }
-        // var_dump ($sql);
-        // var_dump (array_keys($arrayFiltres));
 
         if (!is_null($arrayFiltres)) {
-            $sql = "SELECT * FROM Livre";
+            $sql = "SELECT * FROM Client";
             // on rajoute de couples cle =:cle dans un array 
             $arrayFiltresChaine = [];
             foreach ($arrayFiltres as $cle => $valeur) {
                 $arrayFiltresChaine[] = $cle . " =:" . $cle;
             }
             var_dump($arrayFiltresChaine);
-            // on crée un string contenant les couples séparées par AND
             $chaineFiltres = implode(" AND ", $arrayFiltresChaine);
 
             $sql = $sql . " WHERE " . $chaineFiltres;
@@ -72,95 +50,94 @@ class LivreManager
                 $stmt->bindValue(":" . $cle, $val);
             }
             $stmt->execute();
-            // on obtient un array d'arrays qui représentent les livres
             $arrayResultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             // transformer l'array d'array en array d'objets
             $arrayResultatObjets = [];
-            foreach ($arrayResultat as $livreArray) {
-                $objetLivre = new Livre($livreArray);
-                $arrayResultatObjets[] = $objetLivre;
+            foreach ($arrayResultat as $clientArray) {
+                $objetClient = new Client($clientArray);
+                $arrayResultatObjets[] = $objetClient;
             }
             //var_dump ($arrayResultatObjets);
             return ($arrayResultatObjets);
         } else {
-            $tousLesLivres = $this->selectAll();
-            return $tousLesLivres;
+            $tousLesClients = $this->selectAll();
+            return $tousLesClients;
         }
     }
 
-    // effacer un objet Livre
-    public function delete(Livre $unLivre)
+    // effacer un objet Client
+    public function delete(Client $unClient)
     {
-        $sql = "DELETE FROM livre WHERE id = :id";
+        $sql = "DELETE FROM client WHERE id = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id", $unLivre->getId());
+        $stmt->bindValue(":id", $unClient->getId());
         $stmt->execute();
         // var_dump ($stmt->errorInfo());
     }
 
     public function deleteParId($id)
     {
-        $sql = "DELETE FROM livre WHERE id = :id";
+        $sql = "DELETE FROM client WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
         // var_dump ($stmt->errorInfo());
     }
 
-    public function insert(Livre $unLivre)
+    public function insert(Client $unClient)
     {
-        // INSERT INTO livre (id, titre, prix, description, date_publication, isbn, auteur_id) 
+        // INSERT INTO client (id, titre, prix, description, date_publication, isbn, auteur_id) 
         // VALUES (NULL, :id, :titre, ...)
-        $sql = "INSERT INTO livre (id, titre, prix, description, date_publication, isbn, auteur_id) 
+        $sql = "INSERT INTO client (id, titre, prix, description, date_publication, isbn, auteur_id) 
          VALUES (NULL, :titre, :prix, :description, :date_publication, :isbn, :auteur_id)";
 
         $stmt = $this->db->prepare($sql);
         // bindValues ....
 
-        $stmt->bindValue(":titre", $unLivre->getTitre());
-        $stmt->bindValue(":prix", $unLivre->getPrix());
-        $stmt->bindValue(":description", $unLivre->getDescription());
-        $stmt->bindValue(":date_publication", $unLivre->getDate_publication());
-        $stmt->bindValue(":isbn", $unLivre->getIsbn());
-        $stmt->bindValue(":auteur_id", $unLivre->getAuteur_id());
+        $stmt->bindValue(":titre", $unClient->getTitre());
+        $stmt->bindValue(":prix", $unClient->getPrix());
+        $stmt->bindValue(":description", $unClient->getDescription());
+        $stmt->bindValue(":date_publication", $unClient->getDate_publication());
+        $stmt->bindValue(":isbn", $unClient->getIsbn());
+        $stmt->bindValue(":auteur_id", $unClient->getAuteur_id());
 
         $stmt->execute();
-        // obtenir le dernier id, l'id du Livre qu'on vient d'insèrer
-        $unLivre->setId($this->db->lastInsertId());
+        // obtenir le dernier id, l'id du Client qu'on vient d'insèrer
+        $unClient->setId($this->db->lastInsertId());
         var_dump($stmt->errorInfo());
     }
 
-    public function update($unLivre)
+    public function update($unClient)
     {
-        $sql = "UPDATE livre SET titre = '" . $unLivre->getTitre() . "' , ";
-        $sql = $sql . " prix = '" . $unLivre->getPrix() . "' , ";
-        $sql = $sql . " description = '" . $unLivre->getDescription() . "' , ";
-        $sql = $sql . " date_publication = '" . $unLivre->getDate_publication() . "' , ";
-        $sql = $sql . " isbn = '" . $unLivre->getIsbn() . "' , ";
-        $sql = $sql . " auteur_id = '" . $unLivre->getAuteur_id() . "' ";
+        $sql = "UPDATE client SET titre = '" . $unClient->getTitre() . "' , ";
+        $sql = $sql . " prix = '" . $unClient->getPrix() . "' , ";
+        $sql = $sql . " description = '" . $unClient->getDescription() . "' , ";
+        $sql = $sql . " date_publication = '" . $unClient->getDate_publication() . "' , ";
+        $sql = $sql . " isbn = '" . $unClient->getIsbn() . "' , ";
+        $sql = $sql . " auteur_id = '" . $unClient->getAuteur_id() . "' ";
         $sql = $sql . " WHERE id=:id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(":id", $unLivre->getId());
+        $stmt->bindValue(":id", $unClient->getId());
         $stmt->execute();
         // var_dump ($sql);
         // var_dump ($stmt->errorInfo());
 
     }
 
-    public function updateAuto($unLivre)
+    public function updateAuto($unClient)
     {
-        $sql = "UPDATE livre SET ";
-        $proprietes = get_object_vars($unLivre); // on obtient un array avec les propriétés et les valeurs d'un objet
+        $sql = "UPDATE client SET ";
+        $proprietes = get_object_vars($unClient); // on obtient un array avec les propriétés et les valeurs d'un objet
         $arrayPropParam = [];
      
         // rajouter à la requête toutes les couples proprieté = valeur
-        // ex: UPDATE Livre SET titre=:titre, prix=:prix
+        // ex: UPDATE Client SET titre=:titre, prix=:prix
         // sauf l'id, car on ne peut pas faire UPDATE .... set id = :id
         // si on a RESTRICT dans les propriétés de la rélation
         foreach ($proprietes as $nomPropriete => $valPropriete) {
-            // nous avons (regardez le code de Livre.php)
+            // nous avons (regardez le code de Client.php)
             // un array d'exemplaires (rajouté)
             // et un objet Auteur. Ces propriétés 
             // ne doivent pas être utilisées dans l'UPDATE
