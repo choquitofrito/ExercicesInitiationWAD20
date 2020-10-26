@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +8,9 @@
 </head>
 <body>
     <?php
-    session_start();
-
-    var_dump ($_SESSION);
+        echo "Bonjour, bienvenue au site: ";
+        echo $_GET['email'];
 
     ?>
-    <br>
-    <a href="./effacerSession.php">effacer session</a>
 </body>
 </html>
