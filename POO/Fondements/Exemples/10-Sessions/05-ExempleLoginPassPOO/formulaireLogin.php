@@ -15,6 +15,10 @@
     </form>
     <?php
     if (isset($_GET['message'])){
+        // uniquement quand l'utilisateur tape un mauvais pass
+        // le paramètre URL 'message' est uniquement rempli 
+        // dans "traitementLogin.php", dans le cas ou 
+        // le mot de pass n'est pas correcte
         echo "Problème: ". $_GET['message'];
     }
 
