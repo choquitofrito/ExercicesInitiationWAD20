@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        echo "Bonjour, bienvenue au site: ";
-        echo $_GET['email'];
+Bienvenue au site, voici l'accueil, 
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header ("location: ./formulaireLogin.php");   
+    // echo "<a href='./formulaireLogin.php'>Login encore</a>";
+}
+else {
+    echo $_SESSION['email'];
+}
 
-    ?>
+
+
+?>
+<br>
+<a href="./page1.php">Page 1</a>
+<a href="./page2.php">Page 2</a>
 </body>
 </html>

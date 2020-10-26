@@ -15,7 +15,7 @@
     </form>
     <?php
     if (isset($_GET['message'])){
-        echo $_GET['message'];
+        echo "Problème: ". $_GET['message'];
     }
 
     ?>

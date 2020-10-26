@@ -9,7 +9,9 @@
 
 <body>
     <?php
+    session_start();
     include "./ClientManager.php";
+
     // var_dump($_POST);
 
     // 1. Connecter à la BD
@@ -53,7 +55,11 @@
     // mot_pass contient la donnée du form
     if (password_verify($mot_pass, $mot_pass_hash_bd) == true) {
         // bon pass
-        header("location: ./accueil.php?email=" . $email);
+
+        // stocker le login dans la SESSION
+        $_SESSION['email'] = $email;
+
+        header("location: ./accueil.php");
     } else {
         // mauvais pass
         // echo "Mot de pass incorrect"; // on ne verra JAMAIS ce message car on part de la page
