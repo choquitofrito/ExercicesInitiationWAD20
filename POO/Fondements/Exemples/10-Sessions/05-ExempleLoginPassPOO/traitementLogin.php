@@ -57,7 +57,11 @@
         // bon pass
 
         // stocker le login dans la SESSION
-        $_SESSION['email'] = $email;
+        $_SESSION['email'] = $email; // on stocke un string
+        
+        $_SESSION['clientObjet'] = $client; // pour tester, on stocke un objet
+        // var_dump ($_SESSION);
+        // die(); 
 
         header("location: ./accueil.php");
     } else {
