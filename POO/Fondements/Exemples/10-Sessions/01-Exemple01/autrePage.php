@@ -10,6 +10,7 @@
     session_start();
 
     echo "Bienvenue, ";
+    // afficher une variable de session (nom)
     echo $_SESSION['nom']; // variable qui a été créé dans une autre page
     echo "<br>Je suis dans une autre page, autre contenu du site<br>Voici le panier:<br>";
 

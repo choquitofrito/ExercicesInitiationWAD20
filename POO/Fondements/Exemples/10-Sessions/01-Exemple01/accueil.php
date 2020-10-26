@@ -16,12 +16,16 @@
         session_start(); // toujours au début. Initialiser la session
 
         $panier = [];
+
         $panier[] = "lit";
         $panier[] = "armoire";
+
 
         // array associatif $_SESSION pour stocker toutes les variables de session
         $_SESSION['nom'] = "Gloria";
         $_SESSION['panier'] = $panier;
+
+    
 
         echo "Contenu du panier : <br>";
         foreach ($panier as $val){
