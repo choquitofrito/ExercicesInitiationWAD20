@@ -20,6 +20,7 @@
     // modifier la variable de session
     $produitChoisi = $produits[mt_rand(0, 2)];
     $_SESSION['panier'][] = $produitChoisi;
+    echo "<br>".session_save_path();
 
 
     ?>
