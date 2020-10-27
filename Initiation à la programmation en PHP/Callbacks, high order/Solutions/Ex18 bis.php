@@ -37,9 +37,12 @@
     };
 
     $filtreArrayPerso = function ($tab, $typeRecherche) {
-        // createCb renvoie une fonction ou on a déjà fixé le type de recherche
-        // cette fonction renvoyée a un seul paramètre (le lien).
-        // Ce lien est envoyé à chaque tour par array_filter
+        // createCb (qui reçoit le type) 
+        // renvoie une fonction contenant déjà le type de recherche
+        // fixé. Cette fonction qu'on n'a même pas stocké dans une variable
+        // reçoit juste un paramètre (le lien)
+        // Et c'est cette fonction qui est alors appelée par array_filter
+        // pour chaque élément de l'array
         $tabType = array_filter ($tab, createCb ($typeRecherche));
         // n'oubliez pas de le renvoyer
         return $tabType;
