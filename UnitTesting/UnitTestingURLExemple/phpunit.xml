@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit>
+	<testsuites>
+		<testsuite name="Mes Tests pour la classe URL">
+			<!-- lancer tous les tests qui se trouvent dans le dossier tests dont le nom finit pas "Test.php"-->
+			<directory suffix="Test.php">./tests</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist>
+			<!-- dossiers accesibles par phpunit -->
+			<directory>src</directory>
+		</whitelist>
+	</filter>
+</phpunit>
