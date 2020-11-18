@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":205:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:3:{s:40:"URLTest::testPreparerURLContenantEspaces";d:0.006;s:40:"URLTest::testPreparerURLContenantAccents";d:0;s:41:"URLTest::testPreparerURLContenantSymboles";d:0;}}}

@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":164:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:2:{s:45:"VoitureTest::testChangerVitesseValeurCorrecte";d:0.005;s:47:"VoitureTest::testChangerVitesseValeurIncorrecte";d:0;}}}

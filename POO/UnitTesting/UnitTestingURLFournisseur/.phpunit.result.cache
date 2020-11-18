@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":261:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:3:{s:59:"URLTest::testPreparerURLRenvoieURLCorrecte with data set #0";d:0.005;s:59:"URLTest::testPreparerURLRenvoieURLCorrecte with data set #1";d:0;s:59:"URLTest::testPreparerURLRenvoieURLCorrecte with data set #2";d:0;}}}
