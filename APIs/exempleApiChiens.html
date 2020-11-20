@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const fonctionQuiAppelleApi = async () => {
+            const reponse = await fetch('https://dog.ceo/api/breeds/image/random');
+
+            console.log (reponse);
+            const monObjetChien = await reponse.json(); //extract JSON from the http response
+            console.log (monObjetChien);
+
+            document.write ("<img src='" + monObjetChien.message + "'>");
+            // do something with myJson
+        }
+
+        fonctionQuiAppelleApi();
+
+    </script>
+</body>
+
+</html>

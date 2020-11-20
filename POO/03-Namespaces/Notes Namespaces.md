@@ -5,7 +5,7 @@ Un **espace de noms** (ou sous-espace de noms) sert à **organiser et
 encapsuler de classes qui ont une relation entre-elles de la même
 manière qu'un dossier dans le disque dur**.
 
-Les espaces de noms sont séparés avec le caractère **\\**
+Les espaces de noms sont séparés avec le caractère **\**
 
 La structure de namespaces **peut correspondre exactement à la structure
 de fichiers et dossier dans le disque** (voir les exemples de code)
