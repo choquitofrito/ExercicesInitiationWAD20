@@ -3,7 +3,7 @@
 
 1.  Vérifiez si vous avez déjà le fichier du module XDebug dans votre
     disque : allez dans **xampp/php/ext** et cherchez le fichier
-    **php\_xdebug.dll**
+    **php_xdebug.dll**
 
 > Si c'est le cas, vous avez déjà le module et il reste qu'à l'activer.
 > Passez alors directement au point 3 de ce tutoriel
@@ -17,7 +17,7 @@
 > quelle est votre version de PHP
 >
 > En Windows il s'agit d'un fichier dll qu'on doit renommer à
-> **php\_xdebug.dll** et le placer dans **xampp/php/ext**
+> **php_xdebug.dll** et le placer dans **xampp/php/ext**
 
 3.  **Editez le fichier php.ini (xampp/php)**
 
