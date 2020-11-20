@@ -24,15 +24,15 @@
 > Créez la section **\[XDebug\]** contenant les lignes suivantes (à la
 > fin du fichier php.ini, par exemple):
 >
-> **\[XDebug\]**
+> **[XDebug]**
 >
-> **zend\_extension = \"C:\\xampp\\php\\ext\\php\_xdebug.dll\"**
+> **zend_extension = "C:\xampp\php\ext\php_xdebug.dll\"**
 >
-> **xdebug.remote\_host = \"127.0.0.1\"**
+> **xdebug.remote_host = "127.0.0.1\"**
 >
-> **xdebug.remote\_enable = 1**
+> **xdebug.remote_enable = 1**
 >
-> **xdebug.remote\_handler = \"dbgp\"**
+> **xdebug.remote_handler = "dbgp\"**
 >
 > Note : cette section peut exister déjà. Si c'est le cas, mettez-la à
 > jour. Rajustez les chemins selon vos besoins
@@ -111,3 +111,5 @@ lancer directement votre projet depuis NetBeans
     CTRL-F5 (Debug Project)
 
 ![](media/image1.png){width="5.830325896762905in" height="3.875in"}
+
+

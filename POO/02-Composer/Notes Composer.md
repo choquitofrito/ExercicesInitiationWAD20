@@ -132,8 +132,8 @@ pour effacer une dépendance du projet :
 require "./vendor/autoload.php";
 
 // importer les namespaces
-use Monolog\\Logger;
-use Monolog\\Handler\\StreamHandler;
+use Monolog\Logger;
+use Monolog\Handler\\StreamHandler;
 
 // créer un log (ici un fichier dans le disque)
 $objectLogger = new Logger(\'monLogger');
